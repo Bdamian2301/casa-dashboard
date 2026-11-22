@@ -1,0 +1,20 @@
+{
+  "domain": "casa_dashboard",
+  "name": "Casa",
+  "codeowners": [
+    "@Bdamian2301"
+  ],
+  "config_flow": true,
+  "dependencies": [
+    "frontend",
+    "http",
+    "panel_custom"
+  ],
+  "documentation": "https://github.com/Bdamian2301/casa-dashboard",
+  "integration_type": "service",
+  "iot_class": "calculated",
+  "issue_tracker": "https://github.com/Bdamian2301/casa-dashboard/issues",
+  "requirements": [],
+  "single_config_entry": true,
+  "version": "0.18.1"
+}

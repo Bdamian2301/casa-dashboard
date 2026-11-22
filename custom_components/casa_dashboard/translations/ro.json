@@ -1,0 +1,187 @@
+{
+  "config": {
+    "abort": {
+      "single_instance_allowed": "Casa e deja configurată. O modifici din Configurează."
+    },
+    "step": {
+      "general": {
+        "title": "General",
+        "description": "Numele și imaginea panoului din bara laterală.",
+        "data": {
+          "title": "Nume în bara laterală",
+          "image": "Imaginea de sus (adresă; gol = fără imagine)",
+          "weather": "Vremea",
+          "admin_only": "Arată panoul doar administratorilor"
+        },
+        "data_description": {
+          "image": "Implicit e fotografia casei din integrare: /casa_static/casa.jpg. Poți pune și o imagine din /config/www, de exemplu /local/casa.jpg."
+        }
+      },
+      "energy": {
+        "title": "Energie",
+        "description": "Senzorii de putere și bateria. Am completat ce am găsit de la Deye; verifică și alege producția totală.",
+        "data": {
+          "pv": "Producție solară totală",
+          "pv1": "MPPT 1",
+          "pv2": "MPPT 2",
+          "load": "Consumul casei",
+          "battery": "Putere baterie",
+          "soc": "Încărcarea bateriei (%)",
+          "grid": "Putere rețea (+ când iei din rețea)",
+          "grid_v": "Tensiunea rețelei",
+          "battery_invert": "Senzorul bateriei e negativ la încărcare (Deye)",
+          "battery_kwh": "Capacitatea utilă a bateriei (0 = nu calcula cât mai ține)",
+          "battery_reserve": "Rezerva păstrată de invertor"
+        },
+        "data_description": {
+          "battery_kwh": "Folosită pentru „cât mai ține” și „plină în”.",
+          "battery_reserve": "Procentul sub care invertorul nu descarcă bateria; timpul rămas se socotește până la el."
+        }
+      },
+      "today": {
+        "title": "Energia de azi",
+        "description": "Contoarele zilnice (kWh) și prognoza solară. Am completat ce am găsit; lasă gol ce nu ai.",
+        "data": {
+          "pv_today": "Produs azi",
+          "load_today": "Consumat azi",
+          "import_today": "Import azi",
+          "export_today": "Export azi",
+          "forecast_rest": "Prognoză: rămas azi",
+          "forecast_tomorrow": "Prognoză: mâine"
+        }
+      },
+      "heating": {
+        "title": "Încălzire",
+        "description": "Termostatele, puffer-ul și echipamentele din camera tehnică.",
+        "data": {
+          "thermostats": "Termostate",
+          "mode": "Modul de încălzire",
+          "puffer": "Temperatura puffer-ului",
+          "demand": "Cererea de căldură",
+          "equipment": "Echipamente",
+          "mode_reason": "Motivul ultimei decizii (opțional)",
+          "programs": "Programe fixe (Shelly)",
+          "acm": "Temperatura boilerului ACM"
+        },
+        "data_description": {
+          "thermostats": "Câte unul pe linie: nume = entitate. Pentru un termostat care nu spune singur când încălzește, adaugă și entitatea care arată cererea de căldură (pornit/oprit). Exemplu: Magazin = climate.magazin = sensor.releu_centrala",
+          "equipment": "Câte unul pe linie: nume = entitate, plus = alerta dacă vrei să fie portocaliu când pornește. Exemplu: Centrala = switch.centrala = alerta. Opțional, pe același rând: un input_select pentru mod (buton de schimbare) și un input_text pentru motiv, de ex. Centrala = switch.baxi = alerta = input_select.baxi_mod = input_text.baxi_motiv",
+          "mode_reason": "Entitatea text în care automatizarea scrie ce a decis, de exemplu input_text.pdc_motiv. Apare sub modul de încălzire.",
+          "programs": "Câte unul pe linie: nume = zile = comutator = început = sfârșit. Zilele: L-V pentru luni–vineri, zilnic pentru toate zilele. Orele sunt numere HHMM, ca în Shelly (545 = 05:45). Exemplu: Program 1 = L-V = switch.wilo_program_1 = number.wilo_p1_start = number.wilo_p1_stop"
+        }
+      },
+      "extra": {
+        "title": "Factură și dispozitive",
+        "description": "Ultimul pas.",
+        "data": {
+          "hidro": "Contracte Hidroelectrica",
+          "devices": "Dispozitive urmărite",
+          "alert_soc": "Alertă când bateria scade sub",
+          "alert_puffer": "Alertă când puffer-ul scade sub",
+          "car": "Mașina (OverDrive)",
+          "car_name": "Numele mașinii",
+          "lights": "Lumini exterior",
+          "ac": "Aer condiționat"
+        },
+        "data_description": {
+          "hidro": "Câte unul pe linie: nume = număr contract. Exemplu: Acasă = 8001234567",
+          "devices": "Câte unul pe linie: nume = entitate. Cele indisponibile apar cu roșu după 5 minute.",
+          "car": "Identificatorul dispozitivului OverDrive, de exemplu overdrive_123456 (îl găsești în ID-urile entităților). Gol = fără cardul mașinii.",
+          "lights": "Câte una pe linie: nume = entitate (switch sau light). Exemplu: Foișor = switch.foisor. Automatizarea apus / răsărit vine din pachetul lumini_exterior.yaml.",
+          "ac": "Câte unul pe linie: nume = entitate climate. Exemplu: Aer parter = climate.ac_parter"
+        }
+      }
+    }
+  },
+  "options": {
+    "step": {
+      "general": {
+        "title": "General",
+        "description": "Numele și imaginea panoului din bara laterală.",
+        "data": {
+          "title": "Nume în bara laterală",
+          "image": "Imaginea de sus (adresă; gol = fără imagine)",
+          "weather": "Vremea",
+          "admin_only": "Arată panoul doar administratorilor"
+        },
+        "data_description": {
+          "image": "Implicit e fotografia casei din integrare: /casa_static/casa.jpg. Poți pune și o imagine din /config/www, de exemplu /local/casa.jpg."
+        }
+      },
+      "energy": {
+        "title": "Energie",
+        "description": "Senzorii de putere și bateria. Am completat ce am găsit de la Deye; verifică și alege producția totală.",
+        "data": {
+          "pv": "Producție solară totală",
+          "pv1": "MPPT 1",
+          "pv2": "MPPT 2",
+          "load": "Consumul casei",
+          "battery": "Putere baterie",
+          "soc": "Încărcarea bateriei (%)",
+          "grid": "Putere rețea (+ când iei din rețea)",
+          "grid_v": "Tensiunea rețelei",
+          "battery_invert": "Senzorul bateriei e negativ la încărcare (Deye)",
+          "battery_kwh": "Capacitatea utilă a bateriei (0 = nu calcula cât mai ține)",
+          "battery_reserve": "Rezerva păstrată de invertor"
+        },
+        "data_description": {
+          "battery_kwh": "Folosită pentru „cât mai ține” și „plină în”.",
+          "battery_reserve": "Procentul sub care invertorul nu descarcă bateria; timpul rămas se socotește până la el."
+        }
+      },
+      "today": {
+        "title": "Energia de azi",
+        "description": "Contoarele zilnice (kWh) și prognoza solară. Am completat ce am găsit; lasă gol ce nu ai.",
+        "data": {
+          "pv_today": "Produs azi",
+          "load_today": "Consumat azi",
+          "import_today": "Import azi",
+          "export_today": "Export azi",
+          "forecast_rest": "Prognoză: rămas azi",
+          "forecast_tomorrow": "Prognoză: mâine"
+        }
+      },
+      "heating": {
+        "title": "Încălzire",
+        "description": "Termostatele, puffer-ul și echipamentele din camera tehnică.",
+        "data": {
+          "thermostats": "Termostate",
+          "mode": "Modul de încălzire",
+          "puffer": "Temperatura puffer-ului",
+          "demand": "Cererea de căldură",
+          "equipment": "Echipamente",
+          "mode_reason": "Motivul ultimei decizii (opțional)",
+          "programs": "Programe fixe (Shelly)",
+          "acm": "Temperatura boilerului ACM"
+        },
+        "data_description": {
+          "thermostats": "Câte unul pe linie: nume = entitate. Pentru un termostat care nu spune singur când încălzește, adaugă și entitatea care arată cererea de căldură (pornit/oprit). Exemplu: Magazin = climate.magazin = sensor.releu_centrala",
+          "equipment": "Câte unul pe linie: nume = entitate, plus = alerta dacă vrei să fie portocaliu când pornește. Exemplu: Centrala = switch.centrala = alerta. Opțional, pe același rând: un input_select pentru mod (buton de schimbare) și un input_text pentru motiv, de ex. Centrala = switch.baxi = alerta = input_select.baxi_mod = input_text.baxi_motiv",
+          "mode_reason": "Entitatea text în care automatizarea scrie ce a decis, de exemplu input_text.pdc_motiv. Apare sub modul de încălzire.",
+          "programs": "Câte unul pe linie: nume = zile = comutator = început = sfârșit. Zilele: L-V pentru luni–vineri, zilnic pentru toate zilele. Orele sunt numere HHMM, ca în Shelly (545 = 05:45). Exemplu: Program 1 = L-V = switch.wilo_program_1 = number.wilo_p1_start = number.wilo_p1_stop"
+        }
+      },
+      "extra": {
+        "title": "Factură și dispozitive",
+        "description": "Ultimul pas.",
+        "data": {
+          "hidro": "Contracte Hidroelectrica",
+          "devices": "Dispozitive urmărite",
+          "alert_soc": "Alertă când bateria scade sub",
+          "alert_puffer": "Alertă când puffer-ul scade sub",
+          "car": "Mașina (OverDrive)",
+          "car_name": "Numele mașinii",
+          "lights": "Lumini exterior",
+          "ac": "Aer condiționat"
+        },
+        "data_description": {
+          "hidro": "Câte unul pe linie: nume = număr contract. Exemplu: Acasă = 8001234567",
+          "devices": "Câte unul pe linie: nume = entitate. Cele indisponibile apar cu roșu după 5 minute.",
+          "car": "Identificatorul dispozitivului OverDrive, de exemplu overdrive_123456 (îl găsești în ID-urile entităților). Gol = fără cardul mașinii.",
+          "lights": "Câte una pe linie: nume = entitate (switch sau light). Exemplu: Foișor = switch.foisor. Automatizarea apus / răsărit vine din pachetul lumini_exterior.yaml.",
+          "ac": "Câte unul pe linie: nume = entitate climate. Exemplu: Aer parter = climate.ac_parter"
+        }
+      }
+    }
+  }
+}

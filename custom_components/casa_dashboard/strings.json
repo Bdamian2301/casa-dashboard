@@ -1,0 +1,187 @@
+{
+  "config": {
+    "abort": {
+      "single_instance_allowed": "Casa is already set up. Change it from Configure."
+    },
+    "step": {
+      "general": {
+        "title": "General",
+        "description": "The panel's name and picture in the sidebar.",
+        "data": {
+          "title": "Name in the sidebar",
+          "image": "Top picture (address; empty = no picture)",
+          "weather": "Weather",
+          "admin_only": "Show the panel to administrators only"
+        },
+        "data_description": {
+          "image": "Default: the house photo shipped with the integration, /casa_static/casa.jpg. A picture in /config/www works too, e.g. /local/casa.jpg."
+        }
+      },
+      "energy": {
+        "title": "Energy",
+        "description": "Power sensors and battery. The Deye sensors found are filled in; check them and choose the total production.",
+        "data": {
+          "pv": "Total solar production",
+          "pv1": "MPPT 1",
+          "pv2": "MPPT 2",
+          "load": "House load",
+          "battery": "Battery power",
+          "soc": "Battery charge (%)",
+          "grid": "Grid power (+ while importing)",
+          "grid_v": "Grid voltage",
+          "battery_invert": "The battery sensor is negative while charging (Deye)",
+          "battery_kwh": "Usable battery capacity (0 = no time left)",
+          "battery_reserve": "Reserve kept by the inverter"
+        },
+        "data_description": {
+          "battery_kwh": "Used for 'lasts about' and 'full in'.",
+          "battery_reserve": "The inverter does not discharge below it; time left counts down to it."
+        }
+      },
+      "today": {
+        "title": "Energy today",
+        "description": "Daily counters (kWh) and the solar forecast. Found ones are filled in; leave empty what you do not have.",
+        "data": {
+          "pv_today": "Produced today",
+          "load_today": "Used today",
+          "import_today": "Imported today",
+          "export_today": "Exported today",
+          "forecast_rest": "Forecast: rest of today",
+          "forecast_tomorrow": "Forecast: tomorrow"
+        }
+      },
+      "heating": {
+        "title": "Heating",
+        "description": "Thermostats, buffer tank and the boiler room equipment.",
+        "data": {
+          "thermostats": "Thermostats",
+          "mode": "Heating mode",
+          "puffer": "Buffer tank temperature",
+          "demand": "Heat demand",
+          "equipment": "Equipment",
+          "mode_reason": "Reason of the last decision (optional)",
+          "programs": "Fixed programs (Shelly)",
+          "acm": "Hot water tank temperature"
+        },
+        "data_description": {
+          "thermostats": "One per line: name = entity. For a thermostat that does not report when it heats, add the entity that shows its heat demand (on/off). Example: Shop = climate.shop = sensor.boiler_relay",
+          "equipment": "One per line: name = entity, and = alert to show it in orange while it runs. Example: Boiler = switch.boiler = alert. Optionally on the same line: an input_select for the mode (a button to change it) and an input_text for the reason, e.g. Boiler = switch.baxi = alert = input_select.baxi_mod = input_text.baxi_motiv",
+          "mode_reason": "Text entity where the automation writes what it decided, e.g. input_text.pdc_motiv. Shown under the heating mode.",
+          "programs": "One per line: name = days = switch = start = end. Days: L-V for Monday–Friday, daily for every day. Times are HHMM numbers, as on the Shelly (545 = 05:45). Example: Program 1 = L-V = switch.wilo_program_1 = number.wilo_p1_start = number.wilo_p1_stop"
+        }
+      },
+      "extra": {
+        "title": "Bill and devices",
+        "description": "Last step.",
+        "data": {
+          "hidro": "Hidroelectrica contracts",
+          "devices": "Watched devices",
+          "alert_soc": "Alert when the battery is below",
+          "alert_puffer": "Alert when the buffer tank is below",
+          "car": "Car (OverDrive)",
+          "car_name": "Car name",
+          "lights": "Outdoor lights",
+          "ac": "Air conditioning"
+        },
+        "data_description": {
+          "hidro": "One per line: name = contract number. Example: Home = 8001234567",
+          "devices": "One per line: name = entity. Unavailable ones turn red after 5 minutes.",
+          "car": "The OverDrive device id, e.g. overdrive_123456 (as in its entity ids). Empty = no car card.",
+          "lights": "One per line: name = entity (switch or light). Example: Gazebo = switch.gazebo. The sunset / sunrise automation comes from the lumini_exterior.yaml package.",
+          "ac": "One per line: name = climate entity. Example: Living room AC = climate.ac_living"
+        }
+      }
+    }
+  },
+  "options": {
+    "step": {
+      "general": {
+        "title": "General",
+        "description": "The panel's name and picture in the sidebar.",
+        "data": {
+          "title": "Name in the sidebar",
+          "image": "Top picture (address; empty = no picture)",
+          "weather": "Weather",
+          "admin_only": "Show the panel to administrators only"
+        },
+        "data_description": {
+          "image": "Default: the house photo shipped with the integration, /casa_static/casa.jpg. A picture in /config/www works too, e.g. /local/casa.jpg."
+        }
+      },
+      "energy": {
+        "title": "Energy",
+        "description": "Power sensors and battery. The Deye sensors found are filled in; check them and choose the total production.",
+        "data": {
+          "pv": "Total solar production",
+          "pv1": "MPPT 1",
+          "pv2": "MPPT 2",
+          "load": "House load",
+          "battery": "Battery power",
+          "soc": "Battery charge (%)",
+          "grid": "Grid power (+ while importing)",
+          "grid_v": "Grid voltage",
+          "battery_invert": "The battery sensor is negative while charging (Deye)",
+          "battery_kwh": "Usable battery capacity (0 = no time left)",
+          "battery_reserve": "Reserve kept by the inverter"
+        },
+        "data_description": {
+          "battery_kwh": "Used for 'lasts about' and 'full in'.",
+          "battery_reserve": "The inverter does not discharge below it; time left counts down to it."
+        }
+      },
+      "today": {
+        "title": "Energy today",
+        "description": "Daily counters (kWh) and the solar forecast. Found ones are filled in; leave empty what you do not have.",
+        "data": {
+          "pv_today": "Produced today",
+          "load_today": "Used today",
+          "import_today": "Imported today",
+          "export_today": "Exported today",
+          "forecast_rest": "Forecast: rest of today",
+          "forecast_tomorrow": "Forecast: tomorrow"
+        }
+      },
+      "heating": {
+        "title": "Heating",
+        "description": "Thermostats, buffer tank and the boiler room equipment.",
+        "data": {
+          "thermostats": "Thermostats",
+          "mode": "Heating mode",
+          "puffer": "Buffer tank temperature",
+          "demand": "Heat demand",
+          "equipment": "Equipment",
+          "mode_reason": "Reason of the last decision (optional)",
+          "programs": "Fixed programs (Shelly)",
+          "acm": "Hot water tank temperature"
+        },
+        "data_description": {
+          "thermostats": "One per line: name = entity. For a thermostat that does not report when it heats, add the entity that shows its heat demand (on/off). Example: Shop = climate.shop = sensor.boiler_relay",
+          "equipment": "One per line: name = entity, and = alert to show it in orange while it runs. Example: Boiler = switch.boiler = alert. Optionally on the same line: an input_select for the mode (a button to change it) and an input_text for the reason, e.g. Boiler = switch.baxi = alert = input_select.baxi_mod = input_text.baxi_motiv",
+          "mode_reason": "Text entity where the automation writes what it decided, e.g. input_text.pdc_motiv. Shown under the heating mode.",
+          "programs": "One per line: name = days = switch = start = end. Days: L-V for Monday–Friday, daily for every day. Times are HHMM numbers, as on the Shelly (545 = 05:45). Example: Program 1 = L-V = switch.wilo_program_1 = number.wilo_p1_start = number.wilo_p1_stop"
+        }
+      },
+      "extra": {
+        "title": "Bill and devices",
+        "description": "Last step.",
+        "data": {
+          "hidro": "Hidroelectrica contracts",
+          "devices": "Watched devices",
+          "alert_soc": "Alert when the battery is below",
+          "alert_puffer": "Alert when the buffer tank is below",
+          "car": "Car (OverDrive)",
+          "car_name": "Car name",
+          "lights": "Outdoor lights",
+          "ac": "Air conditioning"
+        },
+        "data_description": {
+          "hidro": "One per line: name = contract number. Example: Home = 8001234567",
+          "devices": "One per line: name = entity. Unavailable ones turn red after 5 minutes.",
+          "car": "The OverDrive device id, e.g. overdrive_123456 (as in its entity ids). Empty = no car card.",
+          "lights": "One per line: name = entity (switch or light). Example: Gazebo = switch.gazebo. The sunset / sunrise automation comes from the lumini_exterior.yaml package.",
+          "ac": "One per line: name = climate entity. Example: Living room AC = climate.ac_living"
+        }
+      }
+    }
+  }
+}
