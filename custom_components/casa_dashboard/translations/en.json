@@ -47,7 +47,13 @@
           "import_today": "Imported today",
           "export_today": "Exported today",
           "forecast_rest": "Forecast: rest of today",
-          "forecast_tomorrow": "Forecast: tomorrow"
+          "forecast_tomorrow": "Forecast: tomorrow",
+          "price_import": "Import price (per kWh)",
+          "price_export": "Export price (per kWh)"
+        },
+        "data_description": {
+          "price_import": "What you pay per kWh taken from the grid, VAT included. Used for the monthly balance; 0 = hidden.",
+          "price_export": "What you get (or are credited) per kWh sent to the grid."
         }
       },
       "heating": {
@@ -138,7 +144,13 @@
           "import_today": "Imported today",
           "export_today": "Exported today",
           "forecast_rest": "Forecast: rest of today",
-          "forecast_tomorrow": "Forecast: tomorrow"
+          "forecast_tomorrow": "Forecast: tomorrow",
+          "price_import": "Import price (per kWh)",
+          "price_export": "Export price (per kWh)"
+        },
+        "data_description": {
+          "price_import": "What you pay per kWh taken from the grid, VAT included. Used for the monthly balance; 0 = hidden.",
+          "price_export": "What you get (or are credited) per kWh sent to the grid."
         }
       },
       "heating": {

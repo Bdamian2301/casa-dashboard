@@ -47,7 +47,13 @@
           "import_today": "Import azi",
           "export_today": "Export azi",
           "forecast_rest": "Prognoză: rămas azi",
-          "forecast_tomorrow": "Prognoză: mâine"
+          "forecast_tomorrow": "Prognoză: mâine",
+          "price_import": "Preț import (lei/kWh)",
+          "price_export": "Preț export (lei/kWh)"
+        },
+        "data_description": {
+          "price_import": "Cât plătești pe kWh luat din rețea, cu TVA. Pentru bilanțul lunar; 0 = bilanțul nu se afișează.",
+          "price_export": "Cât primești (sau ți se compensează) pe kWh trimis în rețea."
         }
       },
       "heating": {
@@ -138,7 +144,13 @@
           "import_today": "Import azi",
           "export_today": "Export azi",
           "forecast_rest": "Prognoză: rămas azi",
-          "forecast_tomorrow": "Prognoză: mâine"
+          "forecast_tomorrow": "Prognoză: mâine",
+          "price_import": "Preț import (lei/kWh)",
+          "price_export": "Preț export (lei/kWh)"
+        },
+        "data_description": {
+          "price_import": "Cât plătești pe kWh luat din rețea, cu TVA. Pentru bilanțul lunar; 0 = bilanțul nu se afișează.",
+          "price_export": "Cât primești (sau ți se compensează) pe kWh trimis în rețea."
         }
       },
       "heating": {

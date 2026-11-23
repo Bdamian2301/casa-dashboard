@@ -1,7 +1,7 @@
 """Constants for Casa."""
 
 DOMAIN = "casa_dashboard"
-VERSION = "0.18.1"
+VERSION = "0.24.0"
 PANEL_URL = "casa"
 STATIC_URL = "/casa_static"
 PANEL_ELEMENT = "casa-panel"
@@ -22,7 +22,9 @@ TODAY_KEYS = ["pv_today", "load_today", "import_today", "export_today", "forecas
 # alerts
 CONF_ALERT_SOC = "alert_soc"
 CONF_ALERT_PUFFER = "alert_puffer"
-NUM_DEFAULTS = {CONF_BATTERY_KWH: 0, CONF_BATTERY_RESERVE: 10, CONF_ALERT_SOC: 20, CONF_ALERT_PUFFER: 35}
+CONF_PRICE_IMPORT = "price_import"     # lei/kWh paid for energy taken from the grid
+CONF_PRICE_EXPORT = "price_export"     # lei/kWh received (or credited) for energy sent to the grid
+NUM_DEFAULTS = {CONF_PRICE_IMPORT: 0, CONF_PRICE_EXPORT: 0, CONF_BATTERY_KWH: 0, CONF_BATTERY_RESERVE: 10, CONF_ALERT_SOC: 20, CONF_ALERT_PUFFER: 35}
 # heating
 CONF_THERMOSTATS = "thermostats"     # "Name = climate.x", one per line
 CONF_MODE = "mode"

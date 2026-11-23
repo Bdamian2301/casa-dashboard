@@ -4,7 +4,7 @@
  * Author: Bogdan Damian. SPDX-License-Identifier: MIT
  */
 (() => {
-const VERSION = '0.18.1';
+const VERSION = '0.24.0';
 const CAR_CONTROLS = false;
 
 const CSS = `
@@ -53,7 +53,7 @@ button:focus-visible{outline:2px solid var(--grid);outline-offset:2px;border-rad
 
 /* grid of cards */
 .grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:16px;margin-top:18px;
-  grid-template-areas:"flow flow flow flow flow flow bill bill bill bill bill bill" "flow flow flow flow flow flow dev dev dev dev dev dev" "cl cl cl cl cl cl cr cr cr cr cr cr" "gr gr gr gr gr gr gr gr gr gr gr gr"}
+  grid-template-areas:"flow flow flow flow flow flow bill bill bill bill bill bill" "flow flow flow flow flow flow dev dev dev dev dev dev" "cl cl cl cl cl cl cr cr cr cr cr cr" "gr gr gr gr gr gr gr gr gr gr gr gr" "bal bal bal bal bal bal bal bal bal bal bal bal"}
 .card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:18px}
 .card h2{margin:0 0 14px;font-size:17px;font-weight:700;display:flex;align-items:center;gap:8px}
 .card h2 svg{width:21px;height:21px;flex:none;color:var(--mut)}
@@ -87,6 +87,37 @@ button:focus-visible{outline:2px solid var(--grid);outline-offset:2px;border-rad
 .fsvg text{fill:var(--ink);font:700 15px Manrope,system-ui,sans-serif}
 .fsvg text.l{fill:var(--mut);font-size:12px;font-weight:600}
 .fsvg .hub{fill:var(--line)}
+.wxm{position:fixed;inset:0;z-index:60;display:grid;place-items:center;padding:16px;background:rgba(8,10,12,.5);backdrop-filter:blur(3px)}
+.wxm[hidden]{display:none}
+.wxp{position:relative;width:min(460px,100%);max-height:calc(100vh - 32px);overflow:auto;border-radius:22px;background:var(--card);color:var(--ink);box-shadow:0 20px 60px rgba(0,0,0,.35)}
+.wxp .empty{padding:36px 24px 8px;text-align:center}
+.wxx{position:absolute;z-index:2;top:10px;right:10px;width:32px;height:32px;border-radius:50%;display:grid;place-items:center;background:var(--card2);color:var(--ink);font-size:16px}
+.wxd{display:block;margin:8px auto 22px;padding:8px 16px;border-radius:12px;background:var(--card2);color:var(--ink);font-weight:700}
+#wxc ha-card,#wxc>*{border:0;box-shadow:none}
+.fsvg.sc{max-height:none;border-radius:16px;margin:2px 0 4px}
+.fsvg.sc .lnw{fill:none;stroke-opacity:.1;stroke-linecap:round;stroke-linejoin:round}
+.fsvg.sc .fl{fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:10 9;opacity:0;filter:drop-shadow(0 0 4px currentColor)}
+.fsvg.sc .fl.go{opacity:1;animation:runsc 1s linear infinite}.fsvg.sc .fl.go.rev{animation-direction:reverse}
+@keyframes runsc{to{stroke-dashoffset:-38}}
+.fsvg.sc .pnl{transition:opacity .6s}.fsvg.sc .pnl:not(.on){opacity:.55}
+.fsvg.sc .gw{transition:opacity .6s}.fsvg.sc.dim .gw{opacity:.35}
+.fsvg.sc .bs{fill:#1e2a26;transition:fill .5s}.fsvg.sc .bs.on{fill:#3ee39b;filter:drop-shadow(0 0 4px #3ee39b)}.fsvg.sc .bs.low{fill:#ef5350;filter:drop-shadow(0 0 4px #ef5350)}
+.fsvg.sc text.sv{font:800 26px Manrope,Inter,system-ui,sans-serif;paint-order:stroke;stroke:#0b1220;stroke-width:4px}
+.fsvg.sc text.sv.pv{fill:#ffb547}.fsvg.sc text.sv.ho{fill:#fff}.fsvg.sc text.sv.bt{fill:#3ee39b}.fsvg.sc text.sv.gr{fill:#5aa2ff}
+.fsvg.sc text.ss{fill:#a8b7c9;font:600 16px Manrope,Inter,system-ui,sans-serif;paint-order:stroke;stroke:#0b1220;stroke-width:3px}
+.fsvg.iso{max-height:340px}.fsvg .gnd{fill:color-mix(in srgb,var(--ink) 5%,transparent)}
+.fsvg .wl.lf{fill:#c8b393}.fsvg .wl.rt{fill:#a8946f}.fsvg .wl.gb{fill:#b7a27e}
+.fsvg .rf.fr{fill:#9a4433}.fsvg .rf.bk{fill:#6e2e23}.fsvg .dr{fill:#5b4030}
+.fsvg .pn{fill:#1d3157;stroke:#3d5a91;stroke-width:.8;transition:fill .6s}.fsvg .pnl.on .pn{fill:#2b4f93;stroke:#ffd27a}
+.fsvg .wn{fill:#2a3340;transition:fill .6s}.fsvg .wins.on .wn{fill:#ffd27a}
+.fsvg .bt.tp{fill:#4a5561}.fsvg .bt.lf{fill:#333b44}.fsvg .bt.rt{fill:#262d35}
+.fsvg .bs{fill:#1b2026;transition:fill .5s}.fsvg .bs.on{fill:var(--bat)}.fsvg .bs.low{fill:var(--bad)}
+.fsvg .iv.tp{fill:#e9edf1}.fsvg .iv.lf{fill:#cfd5dc}.fsvg .iv.rt{fill:#aab2bb}.fsvg .scr{fill:#123a2b;stroke:var(--bat);stroke-width:.7}
+.fsvg .py path{fill:none;stroke:#7d8793;stroke-width:1.6;stroke-linecap:round}.fsvg .py circle{fill:#b8c0c8}
+.fsvg .sun circle{fill:var(--sun);opacity:.25;transition:opacity .6s}.fsvg .sun line{stroke:var(--sun);stroke-width:2;stroke-linecap:round;opacity:.25}
+.fsvg .sun.on circle,.fsvg .sun.on line{opacity:1}
+.fsvg.iso .ln{stroke-width:3.5;opacity:.7}.fsvg.iso .fl{stroke-width:4;stroke-dasharray:2 9}
+.fsvg .iv-l{font-size:10.5px}
 .legend{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 16px;margin-top:10px;font-size:13.5px}
 .legend div{display:flex;justify-content:space-between;gap:8px;border-top:1px solid var(--line);padding-top:8px}
 .legend span{color:var(--mut)}
@@ -135,7 +166,17 @@ button:focus-visible{outline:2px solid var(--grid);outline-offset:2px;border-rad
 .ok{color:var(--bat)}.due{color:var(--heat)}
 .kv{display:grid;grid-template-columns:auto minmax(0,1fr);gap:6px 14px;margin-top:12px;font-size:14px}
 .kv span{color:var(--mut)}.kv b{font-weight:600;text-align:right}
-.gr{grid-area:gr}.gcs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.gcs .wide{grid-column:1/-1}
+.bal{grid-area:bal}.bal[hidden]{display:none}
+.bsum{display:flex;flex-wrap:wrap;gap:10px 28px;align-items:baseline;margin:4px 0 14px}.bsum .big{font-size:30px;font-weight:800;color:var(--good,#1fa463)}.bsum span{color:var(--mut);font-size:14px}.bsum b{color:var(--ink)}
+.btw{overflow-x:auto}.btb{width:100%;border-collapse:collapse;font-size:14px;font-variant-numeric:tabular-nums}
+.btb th{font-weight:600;color:var(--mut);text-align:right;padding:6px 8px;border-bottom:1px solid var(--line);white-space:nowrap}.btb th:first-child,.btb td:first-child{text-align:left;padding-left:0}
+.btb td{text-align:right;padding:7px 8px;border-bottom:1px solid var(--line);white-space:nowrap}.btb tr.cur td{font-weight:700}.btb tfoot td{font-weight:800;border-bottom:0}
+.btb .sv{color:var(--good,#1fa463)}.bnote{margin-top:10px;font-size:12.5px;color:var(--mut)}
+@media (max-width:760px){.btb .nx{display:none}.btb{font-size:13px}.btb td,.btb th{padding:6px 5px}}
+.gr{grid-area:gr}.gr h2 .gday{margin-left:auto;display:inline-flex;padding:3px;border-radius:11px;background:var(--card2);gap:2px}
+.gr h2 .gday button{padding:5px 14px;border-radius:8px;font-size:13px;font-weight:700;color:var(--mut);background:transparent}.gr h2 .gday button.on{background:var(--bg);color:var(--ink)}
+.gr h2 .mx{margin-left:8px}.gtl div.tz span{--c:var(--th)}
+:host{--th:#d4537e}.gcs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.gcs .wide{grid-column:1/-1}
 .gc{padding:12px 12px 8px;border-radius:16px;background:var(--card2);min-width:0}
 .gc .gh{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:6px}.gc .gh b{font-size:14px}
 .gc .gl{display:flex;gap:4px;flex-wrap:wrap;margin-left:auto}
@@ -286,7 +327,7 @@ footer{margin-top:22px;text-align:center;font-size:12.5px;color:var(--mut)}
 
 @media (max-width:1000px){.rm{grid-template-columns:120px minmax(0,1fr)}.rm.two{grid-template-columns:190px minmax(0,1fr)}}
 @media (max-width:760px){
-  .grid{grid-template-columns:minmax(0,1fr);grid-template-areas:"flow" "bill" "heat" "room" "prog" "lit" "acs" "car" "dev";gap:12px}.col{display:contents}
+  .grid{grid-template-columns:minmax(0,1fr);grid-template-areas:"flow" "bill" "heat" "room" "prog" "lit" "acs" "car" "dev" "gr" "bal";gap:12px}.col{display:contents}
   .hero{height:190px}
   .chips{--home:inherit;position:static;grid-template-columns:repeat(2,minmax(0,1fr));padding:0 clamp(12px,2.4vw,28px);margin-top:12px;gap:8px}
   .chip{background:var(--card);color:var(--ink);border-color:var(--line);backdrop-filter:none}
@@ -331,16 +372,16 @@ const T = {
   ro: {
     home: 'Acasă', menu: 'Meniu', solar: 'Solar', load: 'Casa consumă', battery: 'Baterie', grid: 'Rețea',
     gridImport: 'Rețea · import', gridExport: 'Rețea · export', charging: (w) => `Se încarcă · ${w}`, discharging: (w) => `Se descarcă · ${w}`,
-    thermostats: 'Termostate', energyNow: 'Energie acum', boilerRoom: 'Camera tehnică', bill: 'Factura de curent', devices: 'Dispozitive', close: 'Închide', down: (n) => (n === 1 ? '1 căzut' : `${n} căzute`), lights: 'Lumini exterior', charts: 'Grafice', last24: 'ultimele 24 h', gEnergy: 'Energie', gCons: 'Consum', gGrid: 'Rețea', gSolar: 'Solar', gBat: 'Baterie', gSoc: 'Baterie (SOC)', gVolt: 'Tensiune rețea', gLimit: 'prag 253 V',
+    thermostats: 'Termostate', energyNow: 'Energie acum', boilerRoom: 'Camera tehnică', bill: 'Factura de curent', devices: 'Dispozitive', close: 'Închide', down: (n) => (n === 1 ? '1 căzut' : `${n} căzute`), lights: 'Lumini exterior', charts: 'Grafice', last24: 'ultimele 24 h', gToday: 'Azi', gYest: 'Ieri', gEnergy: 'Energie', gCons: 'Consum', gGrid: 'Rețea', gSolar: 'Solar', gBat: 'Baterie', gSoc: 'Baterie (SOC)', gVolt: 'Tensiune rețea', gLimit: 'prag 253 V',
     gTanks: 'Puffer și ACM', gTemp: 'Temperatură', gSet: 'Setat', gHeatOn: 'încălzește', gEquip: 'Echipamente', tChartsSub: 'energie, temperaturi', tAll: 'Achitat', tAllSub: 'toate facturile', tActive: 'active', tIdle: 'Repaus', tRuns: 'Rulează', acTitle: 'Aer condiționat', acRoom: (t) => `în cameră ${t}`, acMode: 'Mod', acFan: 'Ventilator', acOn: (n) => n ? `${n} pornit${n > 1 ? 'e' : ''}` : 'oprit',
     hv: { off: 'Oprit', cool: 'Răcire', heat: 'Încălzire', auto: 'Auto', heat_cool: 'Auto', dry: 'Uscare', fan_only: 'Ventilație' },
     fanM: { auto: 'Auto', low: 'Mic', medium: 'Mediu', middle: 'Mediu', high: 'Mare', quiet: 'Silențios', turbo: 'Turbo' }, lAuto: 'Automat', lAutoOff: 'Automat oprit', lOnAt: (t) => `aprindere ${t}`, lOffAt: (t) => `stingere ${t}`, lAutoHint: 'apus / răsărit', lOn: (n, m) => `${n} din ${m} aprinse`, lToday: 'azi', lTomorrow: 'mâine',
     pickThermostats: 'Alege termostatele în opțiunile integrării.', pickEquipment: 'Alege echipamentele în opțiuni.',
     pickContracts: 'Scrie contractele în opțiuni.', pickDevices: 'Alege dispozitivele urmărite în opțiuni.',
-    noBillData: 'Integrarea Hidroelectrica nu are date pentru acest contract acum.',
+    weather: 'Vremea', balance: 'Bilanț lunar', balSub: 'ultimele 12 luni', balMonth: 'Lună', balProd: 'Produs', balCons: 'Consum', balImp: 'Import', balExp: 'Export', balCost: 'Cost net', balSave: 'Economie', balTotal: 'Total', balNow: 'economie luna asta', balNet: 'cost net rețea', balAuto: 'din surse proprii', balNote: (a, b) => `Cost net = import × ${a} − export × ${b} lei/kWh (fără abonament și taxe fixe). Economie = cât ai fi plătit pe tot consumul fără panouri, minus costul net.`, balNeed: 'Pentru bilanț alege senzorii „Import azi” și „Export azi” în Configurează → Energie azi.', balNoStats: 'Nu există statistici lunare pentru senzorii de import/export (trebuie să aibă state_class total_increasing).', balErr: (m) => `Bilanțul nu s-a putut încărca: ${m}`, tBalSub: (x) => `cost net ${x} lei`, wxMissing: 'Clock Weather Card nu e instalat (HACS → caută „Clock Weather Card”).', wxDetails: 'Detalii vreme', noBillData: 'Integrarea Hidroelectrica nu are date pentru acest contract acum.',
     puffer: 'Puffer', puffer24: 'Puffer · ultimele 24 h', acm: 'ACM', acm24: 'ACM · ultimele 24 h', temps24: 'Temperaturi · ultimele 24 h', ago24: 'acum 24 h', ago12: 'acum 12 h', now: 'acum',
     heatMode: 'Mod încălzire', heatDemand: 'Cerere căldură', modeError: (e) => `Nu am putut schimba modul: ${e}`,
-    flow: 'Fluxul de energie', fSolar: 'solar', fHouse: 'casa', fBattery: 'baterie', fGrid: 'rețea', import: 'import', export: 'export', idleBat: 'în repaus',
+    flow: 'Fluxul de energie', fSolar: 'solar', fInverter: 'invertor', fHouseT: 'Casa', fNow: 'consum acum', fToday: (x) => `azi ${x} kWh`, fHouse: 'casa', fBattery: 'baterie', fGrid: 'rețea', import: 'import', export: 'export', idleBat: 'în repaus',
     selfNow: (x) => `${x} % din surse proprii`, gridV: 'Tensiune rețea', today: 'Azi',
     produced: 'Produs', used: 'Consumat', imported: 'Import', exported: 'Export', selfToday: 'Din surse proprii',
     fcRest: 'Prognoză rest azi', fcTomorrow: 'Prognoză mâine',
@@ -375,16 +416,16 @@ const T = {
   en: {
     home: 'Home', menu: 'Menu', solar: 'Solar', load: 'House load', battery: 'Battery', grid: 'Grid',
     gridImport: 'Grid · import', gridExport: 'Grid · export', charging: (w) => `Charging · ${w}`, discharging: (w) => `Discharging · ${w}`,
-    thermostats: 'Thermostats', energyNow: 'Energy now', boilerRoom: 'Boiler room', bill: 'Electricity bill', devices: 'Devices', close: 'Close', down: (n) => `${n} down`, lights: 'Outdoor lights', charts: 'Charts', last24: 'last 24 h', gEnergy: 'Energy', gCons: 'Load', gGrid: 'Grid', gSolar: 'Solar', gBat: 'Battery', gSoc: 'Battery (SOC)', gVolt: 'Grid voltage', gLimit: '253 V limit',
+    thermostats: 'Thermostats', energyNow: 'Energy now', boilerRoom: 'Boiler room', bill: 'Electricity bill', devices: 'Devices', close: 'Close', down: (n) => `${n} down`, lights: 'Outdoor lights', charts: 'Charts', last24: 'last 24 h', gToday: 'Today', gYest: 'Yesterday', gEnergy: 'Energy', gCons: 'Load', gGrid: 'Grid', gSolar: 'Solar', gBat: 'Battery', gSoc: 'Battery (SOC)', gVolt: 'Grid voltage', gLimit: '253 V limit',
     gTanks: 'Buffer and DHW', gTemp: 'Temperature', gSet: 'Set', gHeatOn: 'heating', gEquip: 'Equipment', tChartsSub: 'energy, temperatures', tAll: 'Paid', tAllSub: 'all bills', tActive: 'active', tIdle: 'Idle', tRuns: 'Running', acTitle: 'Air conditioning', acRoom: (t) => `room ${t}`, acMode: 'Mode', acFan: 'Fan', acOn: (n) => n ? `${n} on` : 'off',
     hv: { off: 'Off', cool: 'Cool', heat: 'Heat', auto: 'Auto', heat_cool: 'Auto', dry: 'Dry', fan_only: 'Fan' },
     fanM: { auto: 'Auto', low: 'Low', medium: 'Medium', middle: 'Medium', high: 'High', quiet: 'Quiet', turbo: 'Turbo' }, lAuto: 'Automatic', lAutoOff: 'Automatic off', lOnAt: (t) => `on ${t}`, lOffAt: (t) => `off ${t}`, lAutoHint: 'sunset / sunrise', lOn: (n, m) => `${n} of ${m} on`, lToday: 'today', lTomorrow: 'tomorrow',
     pickThermostats: 'Choose the thermostats in the integration options.', pickEquipment: 'Choose the equipment in the options.',
     pickContracts: 'Enter the contracts in the options.', pickDevices: 'Choose the watched devices in the options.',
-    noBillData: 'The Hidroelectrica integration has no data for this contract right now.',
+    weather: 'Weather', balance: 'Monthly balance', balSub: 'last 12 months', balMonth: 'Month', balProd: 'Produced', balCons: 'Used', balImp: 'Import', balExp: 'Export', balCost: 'Net cost', balSave: 'Saved', balTotal: 'Total', balNow: 'saved this month', balNet: 'net grid cost', balAuto: 'self-supplied', balNote: (a, b) => `Net cost = import × ${a} − export × ${b} per kWh (no fixed fees). Saved = what all the use would have cost without solar, minus the net cost.`, balNeed: 'For the balance pick the “Import today” and “Export today” sensors in Configure → Energy today.', balNoStats: 'No monthly statistics for the import/export sensors (they need state_class total_increasing).', balErr: (m) => `Could not load the balance: ${m}`, tBalSub: (x) => `net cost ${x}`, wxMissing: 'Clock Weather Card is not installed (HACS → search “Clock Weather Card”).', wxDetails: 'Weather details', noBillData: 'The Hidroelectrica integration has no data for this contract right now.',
     puffer: 'Buffer tank', puffer24: 'Buffer tank · last 24 h', acm: 'Hot water', acm24: 'Hot water · last 24 h', temps24: 'Temperatures · last 24 h', ago24: '24 h ago', ago12: '12 h ago', now: 'now',
     heatMode: 'Heating mode', heatDemand: 'Heat demand', modeError: (e) => `Could not change the mode: ${e}`,
-    flow: 'Energy flow', fSolar: 'solar', fHouse: 'house', fBattery: 'battery', fGrid: 'grid', import: 'import', export: 'export', idleBat: 'idle',
+    flow: 'Energy flow', fSolar: 'solar', fInverter: 'inverter', fHouseT: 'House', fNow: 'using now', fToday: (x) => `today ${x} kWh`, fHouse: 'house', fBattery: 'battery', fGrid: 'grid', import: 'import', export: 'export', idleBat: 'idle',
     selfNow: (x) => `${x} % self-supplied`, gridV: 'Grid voltage', today: 'Today',
     produced: 'Produced', used: 'Used', imported: 'Imported', exported: 'Exported', selfToday: 'Self-supplied',
     fcRest: 'Forecast rest of today', fcTomorrow: 'Forecast tomorrow',
@@ -419,7 +460,7 @@ const T = {
 };
 // phone menu: one button per card, in this order; the card opens right under its button
 const MNAV = [['flow', 'bolt', 'energyNow'], ['bill', 'bill', 'bill'], ['heat', 'thermo', 'thermostats'], ['room', 'flame', 'boilerRoom'],
-  ['prog', 'clock', 'programs'], ['lit', 'bulb', 'lights'], ['acs', 'ac', 'acTitle'], ['car', 'car', 'carDef'], ['dev', 'dev', 'devices'], ['gr', 'chart', 'charts']];
+  ['prog', 'clock', 'programs'], ['lit', 'bulb', 'lights'], ['acs', 'ac', 'acTitle'], ['car', 'car', 'carDef'], ['dev', 'dev', 'devices'], ['gr', 'chart', 'charts'], ['bal', 'bill', 'balance']];
 const tr = (k, ...a) => { const v = T[L][k] ?? T.ro[k] ?? k; return typeof v === 'function' ? v(...a) : v; };
 
 const P = {
@@ -485,7 +526,19 @@ class CasaPanel extends HTMLElement {
   async _loadHist() {
     if (!this._hass || !this._hass.callWS || this._histBusy) return;
     this._histBusy = true;
-    const c = this._cfg, h = c.heating || {}, end = new Date(), start = new Date(end.getTime() - 864e5);
+    const end = new Date(), out = await this._fetchHist(new Date(end.getTime() - 864e5), end);
+    this._histBusy = false; this._hist = out; this._update(); this._charts();
+  }
+  /* yesterday 00:00 – 24:00, for the charts only (fetched when asked, again after midnight) */
+  async _loadYesterday() {
+    const d0 = new Date(); d0.setHours(0, 0, 0, 0); const key = d0.toDateString();
+    if (this._histYKey === key || this._histYBusy) return;
+    this._histYBusy = true;
+    this._histY = await this._fetchHist(new Date(d0.getTime() - 864e5), d0); this._histYKey = key; this._histYBusy = false;
+    this._charts();
+  }
+  async _fetchHist(start, end) {
+    const c = this._cfg, h = c.heating || {};
     const base = { type: 'history/history_during_period', start_time: start.toISOString(), end_time: end.toISOString(), significant_changes_only: false };
     const e = c.energy || {};
     const simple = [...new Set([h.puffer, h.acm, ...(h.equipment || []).map((x) => x.entity), e.pv, e.pv1, e.pv2, e.load, e.grid, e.battery, e.soc, e.grid_v,
@@ -496,7 +549,7 @@ class CasaPanel extends HTMLElement {
       if (simple.length) Object.assign(out, await this._hass.callWS({ ...base, entity_ids: simple, minimal_response: true, no_attributes: true }) || {});
       if (clim.length) Object.assign(out, await this._hass.callWS({ ...base, entity_ids: clim }) || {});   // climate: the temperature is an attribute
     } catch (e) { console.warn('Casa: history', e); }
-    this._histBusy = false; this._hist = out; this._update(); this._charts();
+    return out;
   }
   /* [[ms, state, attributes]] of an entity, oldest first, ending with the live state */
   rows(id) {
@@ -527,9 +580,23 @@ class CasaPanel extends HTMLElement {
 
   /* ---------- charts (last 24 h). Each chart: series of [ms, value] on a 2-minute grid, drawn in a 600-wide
      SVG stretched to the box; labels and the touch / mouse tooltip are HTML on top. */
+  /* the charts' window: today 00:00 → now, or yesterday 00:00 → 24:00 */
+  gRange() {
+    const d0 = new Date(); d0.setHours(0, 0, 0, 0); const m = d0.getTime();
+    return this._gDay === 'y' ? [m - 864e5, m] : [m, Math.max(m + 6e4, Date.now())];
+  }
+  grows(id) {
+    if (this._gDay !== 'y') return this.rows(id);
+    return ((this._histY || {})[id] || []).map((x) => [1000 * (x.lu ?? x.lc ?? 0), x.s, x.a]).filter((x) => x[0] > 0);
+  }
+  gseries(id, pick) {
+    const [t0, t1] = this.gRange();
+    const pts = this.grows(id).filter((p) => p[0] < t1).map(([t, st, a]) => [Math.max(t, t0), pick(st, a)]).filter((p) => isNum(p[1]));
+    return pts.filter((p, i) => i + 1 >= pts.length || pts[i + 1][0] > t0);   // only the last value before the window
+  }
   grid24(id, conv, mean) {
-    const r = this.rows(id); if (!r.length) return [];
-    const now = Date.now(), t0 = now - 864e5, B = 12e4, n = Math.ceil(864e5 / B), out = [];
+    const r = this.grows(id); if (!r.length) return [];
+    const [t0, now] = this.gRange(), B = 12e4, n = Math.ceil((now - t0) / B), out = [];
     let k = 0, last = NaN;
     while (k < r.length && r[k][0] <= t0) { const v = conv(r[k][1]); if (isNum(v)) last = v; k++; }
     for (let b = 0; b < n; b++) {
@@ -542,12 +609,19 @@ class CasaPanel extends HTMLElement {
   }
   unitK(id) { const u = (this.st(id)?.attributes?.unit_of_measurement || '').toLowerCase(); return u === 'kw' ? 1000 : u === 'mw' ? 1e6 : 1; }
   bands(id, isOn) {
-    const r = this.rows(id), t0 = Date.now() - 864e5, out = [];
-    r.forEach(([t, st, a], i) => { const b = i + 1 < r.length ? r[i + 1][0] : Date.now(); if (b > t0 && isOn(st, a)) out.push([Math.max(t, t0), b]); });
+    const r = this.grows(id), [t0, t1] = this.gRange(), out = [];
+    r.forEach(([t, st, a], i) => {
+      const b = Math.min(t1, i + 1 < r.length ? r[i + 1][0] : t1); if (!(b > t0 && t < t1 && isOn(st, a))) return;
+      const a0 = Math.max(t, t0), last = out[out.length - 1];
+      if (last && a0 - last[1] < 6e4) last[1] = b; else out.push([a0, b]);   // one band while it stays on
+    });
     return out;
   }
   _charts() {
     const box = this.$('#gcs'); if (!box || !this._hist) return;
+    this.$$('[data-gday]').forEach((b) => b.classList.toggle('on', (b.dataset.gday === 'y') === (this._gDay === 'y')));
+    if (this._gDay === 'y' && !this._histY) { box.innerHTML = `<p class="empty">${tr('loading')}</p>`; this._loadYesterday(); return; }
+    if (this._gDay === 'y') this._loadYesterday();   // refreshes itself after midnight
     const c = this._cfg, e = c.energy || {}, h = c.heating || {}, W = (id) => (st) => parseFloat(st) * this.unitK(id), N = (st) => parseFloat(st);
     const C = { load: 'var(--home)', grid: 'var(--grid)', pv: 'var(--sun)', bat: 'var(--bat)', heat: 'var(--heat)', acm: 'var(--sun)', mut: 'var(--mut)', bad: 'var(--bad)' };
     const charts = [];
@@ -569,10 +643,13 @@ class CasaPanel extends HTMLElement {
     // tanks + when the equipment ran
     const tk = [h.puffer && { n: tr('puffer'), c: C.heat, pts: this.grid24(h.puffer, N) }, h.acm && { n: tr('acm'), c: C.acm, pts: this.grid24(h.acm, N) }].filter((x) => x && x.pts.length);
     if (tk.length) charts.push({ k: 'tk', title: tr('gTanks'), wide: true, H: 150, unit: '°', ser: tk,
-      tl: (h.equipment || []).map((x, i) => ({ n: x.name, c: ['var(--grid)', 'var(--heat)', 'var(--bat)', 'var(--sun)'][i % 4], b: this.bands(x.entity, (st) => st === 'on') })) });
+      tl: [...(h.equipment || []).map((x, i) => ({ n: x.name, c: ['var(--grid)', 'var(--heat)', 'var(--bat)', 'var(--sun)'][i % 4], b: this.bands(x.entity, (st) => st === 'on') })),
+        // thermostats: when each zone asked for heat (its relay entity, or the climate's hvac_action)
+        ...(c.thermostats || []).map((t) => ({ n: t.name || this.st(t.entity)?.attributes?.friendly_name || t.entity, c: 'var(--th)', th: true,
+          b: t.heat ? this.bands(t.heat, (st) => /^(on|true|1|pornit|heating|da|yes)$/i.test(st)) : this.bands(t.entity, (st, a) => a && a.hvac_action === 'heating') }))] });
     // every thermostat: temperature, set point (dashed) and the hours it heated (shaded)
     (c.thermostats || []).forEach((t, i) => {
-      const temp = this.series(t.entity, (st, a) => parseFloat(a && a.current_temperature)), set = this.series(t.entity, (st, a) => (st === 'off' ? NaN : parseFloat(a && a.temperature)));
+      const temp = this.gseries(t.entity, (st, a) => parseFloat(a && a.current_temperature)), set = this.gseries(t.entity, (st, a) => (st === 'off' ? NaN : parseFloat(a && a.temperature)));
       const heatOn = t.heat ? this.bands(t.heat, (st) => /^(on|true|1|pornit|heating|da|yes)$/i.test(st)) : this.bands(t.entity, (st, a) => a && a.hvac_action === 'heating');
       if (!temp.length) return;
       charts.push({ k: 'th' + i, title: t.name || this.st(t.entity)?.attributes?.friendly_name || t.entity, H: 110, unit: '°', step: true, band: heatOn,
@@ -583,7 +660,7 @@ class CasaPanel extends HTMLElement {
     box.innerHTML = charts.length ? charts.map((x) => this._chartHtml(x)).join('') : `<p class="empty">${tr('noHistory')}</p>`;
   }
   _chartHtml(g) {
-    const W = 600, H = g.H, t0 = Date.now() - 864e5, X = (t) => ((t - t0) / 864e5) * W;
+    const W = 600, H = g.H, [t0, t1] = this.gRange(), X = (t) => ((t - t0) / (t1 - t0)) * W;
     const vis = g.ser.filter((x, i) => !this._gOff[g.k + i] && !(this._gOff[g.k + i] === undefined && x.hide));
     g.ser.forEach((x, i) => { if (this._gOff[g.k + i] === undefined && x.hide) this._gOff[g.k + i] = true; });
     const vals = vis.flatMap((x) => x.pts.map((p) => p[1])).concat((g.lines || []).map((l) => l[0]));
@@ -594,7 +671,7 @@ class CasaPanel extends HTMLElement {
     const raw = (hi - lo) / 4, mag = Math.pow(10, Math.floor(Math.log10(raw || 1))), step = [1, 2, 2.5, 5, 10].map((m) => m * mag).find((m) => m >= raw) || raw;
     if (g.lo == null) lo = Math.floor(lo / step) * step; if (g.hi == null) hi = Math.ceil(hi / step) * step;
     const Y = (v) => H - ((v - lo) / ((hi - lo) || 1)) * H;
-    g.geo = { lo, hi, H, t0 };
+    g.geo = { lo, hi, H, t0, t1 };
     const yl = (v) => g.unit === 'W' ? (Math.abs(v) >= 1000 ? `${fmt(v / 1000, Math.abs(v) % 1000 ? 1 : 0)}k` : fmt(v)) : `${fmt(v, step < 1 ? 1 : 0)}${g.unit === '%' ? '' : g.unit === '°' ? '°' : ''}`;
     let grid = '', ylab = '';
     for (let v = lo; v <= hi + step / 2; v += step) { const y = Y(v); grid += `<line class="gg" x1="0" x2="${W}" y1="${y.toFixed(1)}" y2="${y.toFixed(1)}"/>`; ylab += `<span class="gy" style="top:${(y / H * 100).toFixed(2)}%">${yl(v)}</span>`; }
@@ -608,13 +685,14 @@ class CasaPanel extends HTMLElement {
       const area = x.area ? `<path class="ga" style="--c:${x.c}" d="${d}V${base.toFixed(1)}H${X(x.pts[0][0]).toFixed(1)}Z"/>` : '';
       return `${area}<path class="gs ${x.dash ? 'd' : ''}" style="--c:${x.c}" d="${d}"/>`;
     }).join('');
-    // x labels every 3 hours on the clock
-    const d = new Date(t0); d.setMinutes(0, 0, 0); d.setHours(Math.ceil((d.getHours() + (t0 > d.getTime() ? 1 : 0)) / 3) * 3);
-    let xl = ''; for (let t = d.getTime(); t < Date.now() - 1.6 * 36e5; t += 3 * 36e5) { const nd = new Date(t); xl += `<span class="gx" style="left:${(X(t) / W * 100).toFixed(2)}%">${String(nd.getHours()).padStart(2, '0')}:00</span>`; }
-    xl += `<span class="gx e" style="left:100%">${tr('now')}</span>`;
+    // x labels on the clock, from 00:00; the step grows with the window (early in the morning it is short)
+    const span = t1 - t0, stepH = span <= 3 * 36e5 ? 0.5 : span <= 6 * 36e5 ? 1 : span <= 12 * 36e5 ? 2 : 3, st = stepH * 36e5;
+    const hm = (t) => { const nd = new Date(t); return `${String(nd.getHours()).padStart(2, '0')}:${String(nd.getMinutes()).padStart(2, '0')}`; };
+    let xl = ''; for (let t = t0; t < t1 - st * 0.55; t += st) xl += `<span class="gx" style="left:${(X(t) / W * 100).toFixed(2)}%">${hm(t)}</span>`;
+    xl += `<span class="gx e" style="left:100%">${this._gDay === 'y' ? '24:00' : tr('now')}</span>`;
     const leg = g.ser.map((x, i) => `<button class="${this._gOff[g.k + i] ? 'off' : ''}" style="--c:${x.c}" data-gs="${g.k}|${i}"><i></i>${esc(x.n)}</button>`).join('')
       + (g.band && g.band.length ? `<button style="--c:color-mix(in srgb,var(--heat) 35%,transparent)" disabled><i></i>${tr('gHeatOn')}</button>` : '');
-    const tl = g.tl && g.tl.length ? `<div class="gtl">${g.tl.map((r) => `<div><em>${esc(r.n)}</em>${r.b.map(([a, b]) => `<span style="--c:${r.c};left:${(X(a) / W * 100).toFixed(2)}%;width:${Math.max(0.3, (X(b) - X(a)) / W * 100).toFixed(2)}%"></span>`).join('')}</div>`).join('')}</div>` : '';
+    const tl = g.tl && g.tl.length ? `<div class="gtl">${g.tl.map((r) => `<div class="${r.th ? 'tz' : ''}"><em>${esc(r.n)}</em>${r.b.map(([a, b]) => `<span style="--c:${r.c};left:${(X(a) / W * 100).toFixed(2)}%;width:${Math.max(0.3, (X(b) - X(a)) / W * 100).toFixed(2)}%"></span>`).join('')}</div>`).join('')}</div>` : '';
     return `<div class="gc ${g.wide ? 'wide' : ''}" data-gc="${g.k}"><div class="gh"><b>${esc(g.title)}</b><span class="gl">${leg}</span></div>
       <div class="gb" style="height:${H}px"><svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" aria-hidden="true">${bands}${grid}${lines}</svg>${ylab}${xl}
       <div class="cur" hidden></div><div class="tip" hidden></div><div class="hit" data-hit="${g.k}"></div></div>${tl}</div>`;
@@ -623,7 +701,7 @@ class CasaPanel extends HTMLElement {
     const g = this._gd && this._gd[k], el = ev.target.closest('.gb'); if (!g || !el) return;
     const cur = el.querySelector('.cur'), tip = el.querySelector('.tip');
     if (leave) { cur.hidden = true; tip.hidden = true; return; }
-    const r = el.getBoundingClientRect(), f = Math.max(0, Math.min(1, (ev.clientX - r.left) / r.width)), t = g.geo.t0 + f * 864e5;
+    const r = el.getBoundingClientRect(), f = Math.max(0, Math.min(1, (ev.clientX - r.left) / r.width)), t = g.geo.t0 + f * (g.geo.t1 - g.geo.t0);
     const at = (pts) => { let v = NaN; for (const p of pts) { if (p[0] - 6e4 > t) break; v = p[1]; } return v; };
     const fv = (v) => !isNum(v) ? '–' : g.unit === 'W' ? (Math.abs(v) >= 1000 ? `${fmt(v / 1000, 2)} kW` : `${fmt(v)} W`) : g.unit === '%' ? `${fmt(v)} %` : g.unit === 'V' ? `${fmt(v, 1)} V` : `${fmt(v, 1)}°`;
     const rows = g.ser.map((x, i) => this._gOff[g.k + i] ? '' : `<div style="--c:${x.c}"><i></i>${esc(x.n)}<b class="num">${fv(at(x.pts))}</b></div>`).join('');
@@ -656,18 +734,20 @@ class CasaPanel extends HTMLElement {
   }
   more(id) { if (id) this.dispatchEvent(new CustomEvent('hass-more-info', { detail: { entityId: id }, bubbles: true, composed: true })); }
   $(s) { return this.shadowRoot.querySelector(s); }
+  $$(s) { return [...this.shadowRoot.querySelectorAll(s)]; }
   set(id, html) { const el = this.$('#' + id); if (el && el.innerHTML !== html) el.innerHTML = html; }
 
   /* ---------- skeleton (built once; _update only changes values, so the page never jumps) */
   _render() {
     const c = this._cfg, ths = c.thermostats || [], h = c.heating || {}, eq = h.equipment || [];
+    this._balDrawn = null;
     this.shadowRoot.innerHTML = `<style>${CSS}</style>
       <div class="wrap">
         <div class="head"><header class="hero">${c.image ? `<img src="${esc(c.image)}" alt="">` : ''}
           <div class="top"><button class="menu" id="menu" aria-label="${tr('menu')}">${ic('menu')}</button>
             <div class="title"><h1>${esc(c.title || tr('home'))}</h1><p id="date"></p></div>
-            <div class="lang" role="group" aria-label="Limba / Language">${['ro', 'en'].map((x) => `<button data-lang="${x}" class="${L === x ? 'on' : ''}" aria-pressed="${L === x}">${x.toUpperCase()}</button>`).join('')}</div>
-            ${c.weather ? `<button class="wx" data-id="${esc(c.weather)}" id="wx"></button>` : ''}</div>
+            ${this._langHtml()}
+            ${c.weather ? `<button class="wx" id="wx" aria-haspopup="dialog"></button>` : ''}</div>
         </header>
           <div class="chips">
             ${this._chip('sun', tr('solar'), 'c_pv', '--c:var(--sun)', this.e.pv || this.e.pv1)}
@@ -682,7 +762,8 @@ class CasaPanel extends HTMLElement {
           <div class="scrim" data-mclose hidden></div>
           <section class="card flow"><h2>${ic('bolt')} ${tr('energyNow')} <small id="f_state"></small></h2>${this._flowSvg()}
             <div class="legend" id="f_leg"></div><div id="f_today"></div></section>
-          <section class="card gr" id="gr"><h2>${ic('chart')} ${tr('charts')} <small>${tr('last24')}</small></h2><div class="gcs" id="gcs"><p class="empty">${tr('loading')}</p></div></section>
+          <section class="card gr" id="gr"><h2>${ic('chart')} ${tr('charts')} <span class="gday"><button data-gday="t" class="on">${tr('gToday')}</button><button data-gday="y">${tr('gYest')}</button></span></h2><div class="gcs" id="gcs"><p class="empty">${tr('loading')}</p></div></section>
+          <section class="card bal" ${(c.prices || {}).imp > 0 ? '' : 'hidden'}><h2>${ic('bill')} ${tr('balance')} <small>${tr('balSub')}</small></h2><div id="balc"><p class="empty">${tr('loading')}</p></div></section>
           <section class="card bill"><h2>${ic('bill')} ${tr('bill')} <small>Hidroelectrica</small></h2><div id="bill"></div></section>
           <section class="card dev"><h2>${ic('dev')} ${tr('devices')} <small id="d_sum"></small></h2><div id="devs"></div></section>
           <div class="col cl">
@@ -726,6 +807,7 @@ class CasaPanel extends HTMLElement {
           </div>
         </div>
         <footer>Casa ${VERSION}</footer>
+        ${c.weather ? `<div class="wxm" id="wxm" hidden><div class="wxp" role="dialog" aria-modal="true" aria-label="${tr('weather')}"><button class="wxx" id="wxx" aria-label="${tr('close')}">✕</button><div id="wxc"></div></div></div>` : ''}
       </div>`;
     const hit = (ev, leave) => { const h = ev.target.closest && ev.target.closest('[data-hit]'); if (h) this._tip(ev, h.dataset.hit, leave); };
     this.shadowRoot.addEventListener('pointermove', (ev) => hit(ev));
@@ -737,6 +819,7 @@ class CasaPanel extends HTMLElement {
     this.shadowRoot.addEventListener('touchend', (ev) => { if (sc == null) return; const dy = (ev.changedTouches[0]?.clientY ?? sy) - sy;
       if (dy > 90 && sc.scrollTop <= 0) { this._mo = ''; this._mnav(); } else sc.style.transform = ''; sy = null; sc = null; }, { passive: true });
     this.shadowRoot.addEventListener('keydown', (ev) => { if (ev.key === 'Escape' && this._mo) { this._mo = ''; this._mnav(); } });
+    this.shadowRoot.addEventListener('keydown', (ev) => { if (ev.key === 'Escape' && this.$('#wxm') && !this.$('#wxm').hidden) this._wxClose(); });
     this.shadowRoot.addEventListener('click', (ev) => {
       const cb = ev.target.closest('[data-car]'); if (cb) { this._carCmd(cb.dataset.car, cb.dataset.v); return; }
       if (ev.target.closest('#pg_list')) { this._progOpen = true; this._progBuilt = false; this._programs(); return; }
@@ -745,6 +828,8 @@ class CasaPanel extends HTMLElement {
       const lg = ev.target.closest('[data-lang]');
       if (lg) { L = lg.dataset.lang; try { localStorage.setItem('casa_lang', L); } catch (e) { /* storage off */ } this._render(); return; }
       if (ev.target.closest('#m_btn')) { this._modeOpen = !this._modeOpen; this._modeErr = ''; this._opts(); return; }
+      const gd = ev.target.closest('[data-gday]');
+      if (gd) { this._gDay = gd.dataset.gday === 'y' ? 'y' : 't'; this._charts(); return; }
       const gs = ev.target.closest('[data-gs]');
       if (gs) { const [k, i] = gs.dataset.gs.split('|'); this._gOff[k + i] = !this._gOff[k + i]; const g = this._gd[k];
         const old = this.$(`[data-gc="${k}"]`); if (g && old) old.outerHTML = this._chartHtml(g); return; }
@@ -759,6 +844,10 @@ class CasaPanel extends HTMLElement {
       if (em) { const k = +em.dataset.eqmode; this._eqOpen = this._eqOpen === k ? null : k; this._eqErr = ''; this._eqOpts(); return; }
       const eo = ev.target.closest('[data-eqopt]'); if (eo) { this._eqChoose(+eo.dataset.k, eo.dataset.eqopt); return; }
       const o = ev.target.closest('[data-opt]'); if (o) { this._choose(o.dataset.opt); return; }
+      if (ev.target.closest('#wxx') || ev.target.id === 'wxm') { this._wxClose(); return; }
+      if (ev.target.closest('#wx')) { this._wxOpen(); return; }
+      const wd = ev.target.closest('.wxd'); if (wd) { this._wxClose(); this.more(wd.dataset.id); return; }
+      if (ev.target.closest('#wxm')) return;                             // clicks inside the weather card stay there
       const b = ev.target.closest('[data-id]'); if (b) this.more(b.dataset.id);
       if (ev.target.closest('#menu')) this.dispatchEvent(new Event('hass-toggle-menu', { bubbles: true, composed: true }));
     });
@@ -771,20 +860,119 @@ class CasaPanel extends HTMLElement {
     return `<button class="chip" style="${style}" ${ent ? `data-id="${esc(ent)}"` : ''}><i>${ic(icon)}</i><div><span id="${id}_l">${label}</span><b class="num" id="${id}">–</b></div></button>`;
   }
   _flowSvg() {
-    // hub in the middle; solar above, grid left, house right, battery below
-    const node = (id, x, y, icon, col) => `<g><circle class="nd" cx="${x}" cy="${y}" r="26" style="stroke:${col}"/><g transform="translate(${x - 13},${y - 13}) scale(1.08)" style="color:${col}">${ic(icon).replace('<svg ', '<svg width="24" height="24" ')}</g></g>`;
-    const path = (id, d, col) => `<path class="ln" d="${d}"/><path class="fl" id="${id}" d="${d}" style="stroke:${col}"/>`;
-    return `<svg class="fsvg" viewBox="0 0 360 250" role="img" aria-label="${tr('flow')}">
-      ${path('l_pv', 'M180 58 V112', 'var(--sun)')}${path('l_grid', 'M76 125 H170', 'var(--grid)')}
-      ${path('l_load', 'M190 125 H284', 'var(--home)')}${path('l_bat', 'M180 138 V192', 'var(--bat)')}
-      <circle class="hub" cx="180" cy="125" r="9"/>
-      ${node('n_pv', 180, 32, 'sun', 'var(--sun)')}${node('n_grid', 50, 125, 'grid', 'var(--grid)')}
-      ${node('n_load', 310, 125, 'home', 'var(--home)')}${node('n_bat', 180, 218, 'bat', 'var(--bat)')}
-      <text x="214" y="30" id="v_pv">–</text><text class="l" x="214" y="46">${tr('fSolar')}</text>
-      <text x="50" y="172" text-anchor="middle" id="v_grid">–</text><text class="l" x="50" y="188" text-anchor="middle" id="v_gridl">${tr('fGrid')}</text>
-      <text x="310" y="172" text-anchor="middle" id="v_load">–</text><text class="l" x="310" y="188" text-anchor="middle">${tr('fHouse')}</text>
-      <text x="214" y="216" id="v_bat">–</text><text class="l" x="214" y="232" id="v_batl">${tr('fBattery')}</text>
-    </svg>`;
+    // a little night scene: ground-mounted solar array, inverter and battery in front, a modern villa and the grid pole;
+    // glowing flows run on the floor in front of everything. Ids l_* (flows), v_* (values) and b_seg* (battery bars) are live.
+    const O = [470, 250], K = 0.866;
+    const P = (x, y, z = 0) => [O[0] + (x - y) * K, O[1] + (x + y) * 0.5 - z];
+    const pt = (a) => a.map((q) => P(...q).map((n) => n.toFixed(1)).join(',')).join(' ');
+    let html = `<defs>
+     <radialGradient id="cs-bg" cx="50%" cy="38%" r="70%"><stop offset="0" stop-color="#16223a"/><stop offset=".6" stop-color="#0b1220"/><stop offset="1" stop-color="#05080e"/></radialGradient>
+     <linearGradient id="cs-floor" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#132036"/><stop offset="1" stop-color="#070b13"/></linearGradient>
+     <linearGradient id="cs-glass" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3a6fc4"/><stop offset=".45" stop-color="#16305e"/><stop offset="1" stop-color="#0d1c3a"/></linearGradient>
+     <linearGradient id="cs-silver" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#e9edf2"/><stop offset=".5" stop-color="#b9c1cb"/><stop offset="1" stop-color="#8a939e"/></linearGradient>
+     <linearGradient id="cs-silverD" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#9aa3ae"/><stop offset="1" stop-color="#5f6872"/></linearGradient>
+     <linearGradient id="cs-warm" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffe2a8"/><stop offset="1" stop-color="#f2a64a"/></linearGradient>
+     <linearGradient id="cs-car" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5b6470"/><stop offset="1" stop-color="#22272e"/></linearGradient>
+     <linearGradient id="cs-anth" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3a3f47"/><stop offset="1" stop-color="#23272d"/></linearGradient>
+     <linearGradient id="cs-anthR" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2b2f36"/><stop offset="1" stop-color="#191c21"/></linearGradient>
+     <linearGradient id="cs-white" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f4f6f8"/><stop offset="1" stop-color="#d9dee4"/></linearGradient>
+     <linearGradient id="cs-whiteR" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d3d9df"/><stop offset="1" stop-color="#b3bbc4"/></linearGradient>
+     <linearGradient id="cs-glassW" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffe6b8"/><stop offset=".55" stop-color="#f6b766"/><stop offset="1" stop-color="#c9823e"/></linearGradient>
+     <linearGradient id="cs-glassN" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7fa6d9"/><stop offset="1" stop-color="#2a3f63"/></linearGradient>
+     <linearGradient id="cs-wood" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#b9824f"/><stop offset="1" stop-color="#8a5a33"/></linearGradient>
+     <radialGradient id="cs-leaf" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#4f9a5a"/><stop offset="1" stop-color="#1f4a2b"/></radialGradient>
+     <filter id="cs-glow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+     <filter id="cs-soft"><feGaussianBlur stdDeviation="10"/></filter>
+    </defs>
+    <rect width="1000" height="500" fill="url(#cs-bg)"/>`;
+    // floor plate with grid
+    html += `<polygon points="${pt([[-300,-300],[300,-300],[300,300],[-300,300]])}" fill="url(#cs-floor)" opacity=".95"/>`;
+    for (let i = -300; i <= 300; i += 50) html += `<line x1="${P(i,-300)[0]}" y1="${P(i,-300)[1]}" x2="${P(i,300)[0]}" y2="${P(i,300)[1]}" stroke="#2a4d7a" stroke-opacity=".18"/><line x1="${P(-300,i)[0]}" y1="${P(-300,i)[1]}" x2="${P(300,i)[0]}" y2="${P(300,i)[1]}" stroke="#2a4d7a" stroke-opacity=".18"/>`;
+    const box = (x, y, z, w, d, h, top, left, right, extra = '') => `<polygon points="${pt([[x,y,z+h],[x+w,y,z+h],[x+w,y+d,z+h],[x,y+d,z+h]])}" fill="${top}" ${extra}/>`
+      + `<polygon points="${pt([[x,y+d,z],[x+w,y+d,z],[x+w,y+d,z+h],[x,y+d,z+h]])}" fill="${left}" ${extra}/>`
+      + `<polygon points="${pt([[x+w,y,z],[x+w,y+d,z],[x+w,y+d,z+h],[x+w,y,z+h]])}" fill="${right}" ${extra}/>`;
+    const shadow = (x, y, w, d) => `<polygon points="${pt([[x-6,y-6],[x+w+10,y-6],[x+w+10,y+d+10],[x-6,y+d+10]])}" fill="#000" opacity=".45" filter="url(#cs-soft)"/>`;
+    // energy paths on the floor (neon) – all in front of the house
+    const fp = (id, pts, col, w = 3) => { const d = 'M' + pts.map((q) => P(...q).map((n) => n.toFixed(1)).join(' ')).join(' L'); return `<path class="lnw" d="${d}" style="stroke:${col}" stroke-width="${w + 6}"/><path class="fl" id="${id}" d="${d}" style="stroke:${col}" stroke-width="${w}"/>`; };
+    // solar array (ground mounted, back-left)
+    let pv = '';
+    for (let r = 0; r < 2; r++) for (let c = 0; c < 3; c++) {
+      const x = -300 + c * 46, y = -150 + r * 70, w = 42, d = 52, z0 = 8, z1 = 34;
+      pv += `<polygon points="${pt([[x,y,z1],[x+w,y,z1],[x+w,y+d,z0],[x,y+d,z0]])}" fill="url(#cs-glass)" stroke="#9fc1ff" stroke-opacity=".55" stroke-width="1"/>`;
+      for (let k = 1; k < 4; k++) { const t = k / 4, a = P(x,y+d*t,z1-(z1-z0)*t), b = P(x+w,y+d*t,z1-(z1-z0)*t); pv += `<line x1="${a[0]}" y1="${a[1]}" x2="${b[0]}" y2="${b[1]}" stroke="#7fa6e8" stroke-opacity=".35"/>`; }
+      for (let k = 1; k < 3; k++) { const xx = x + w * k / 3, a = P(xx,y,z1), b = P(xx,y+d,z0); pv += `<line x1="${a[0]}" y1="${a[1]}" x2="${b[0]}" y2="${b[1]}" stroke="#7fa6e8" stroke-opacity=".35"/>`; }
+      pv += `<polygon points="${pt([[x+3,y+2,z1-1],[x+w*0.45,y+2,z1-1],[x+w*0.2,y+d*0.6,z0+10],[x+3,y+d*0.6,z0+10]])}" fill="#fff" opacity=".08"/>`;
+    }
+    html += shadow(-305, -155, 140, 130) + `<g id="pnl" class="pnl">${pv}</g>`;
+    html += fp('l_pv', [[-230,-12],[-230,22],[-40,22],[-40,44],[-26,44]], '#ffb547');                      // panels -> inverter
+    html += fp('l_bat', [[-12,62],[-12,122],[-74,122]], '#3ee39b');                           // battery <-> inverter
+    html += fp('l_load', [[24,46],[124,46],[124,-6]], '#e8f1ff');                          // inverter -> house
+    html += fp('l_grid', [[334,26],[334,80],[90,80],[90,50],[22,50]], '#5aa2ff', 2.5);                    // inverter <-> grid pole (front)
+    // the house: modern villa – anthracite ground floor with glass walls, white cantilevered upper floor, wood cladding, flat roofs
+    const fx = (x, y, z) => P(x, y, z);
+    const face = (pts4, fill, extra = '') => `<polygon points="${pt(pts4)}" fill="${fill}" ${extra}/>`;
+    // light pools on the floor in front of the glass
+    const lp1 = P(110, 10), lp2 = P(220, -60);
+    html += `<ellipse cx="${lp1[0]}" cy="${lp1[1] + 8}" rx="70" ry="22" fill="#ffb45a" opacity=".22" filter="url(#cs-soft)"/><ellipse cx="${lp2[0] + 18}" cy="${lp2[1] + 10}" rx="44" ry="26" fill="#ffb45a" opacity=".18" filter="url(#cs-soft)"/>`;
+    const tr0 = P(26, -128); html += `<line x1="${tr0[0]}" y1="${tr0[1]}" x2="${tr0[0]}" y2="${tr0[1] - 40}" stroke="#4b3626" stroke-width="3"/><circle cx="${tr0[0]}" cy="${tr0[1] - 52}" r="20" fill="url(#cs-leaf)"/><circle cx="${tr0[0] + 10}" cy="${tr0[1] - 40}" r="13" fill="url(#cs-leaf)"/>`;
+    html += shadow(54, -112, 176, 118);
+    // ground floor: x 60..200, y -100..-10, h 46
+    const gx0 = 60, gx1 = 200, gy0 = -100, gy1 = -10, gh = 46;
+    html += face([[gx0,gy1,0],[gx1,gy1,0],[gx1,gy1,gh],[gx0,gy1,gh]], 'url(#cs-anth)');
+    html += face([[gx1,gy0,0],[gx1,gy1,0],[gx1,gy1,gh],[gx1,gy0,gh]], 'url(#cs-anthR)');
+    // glass walls (front: big panes, right: corner glazing)
+    for (const [a, b] of [[68, 102], [106, 140], [144, 160]]) html += face([[a,gy1,3],[b,gy1,3],[b,gy1,gh-5],[a,gy1,gh-5]], 'url(#cs-glassW)', 'class="gw"') + face([[a+2,gy1,gh-12],[a+(b-a)*0.55,gy1,gh-5],[a+(b-a)*0.35,gy1,gh-5],[a+2,gy1,gh-20]], '#fff', 'opacity=".10"');
+    html += face([[gx1,gy0+8,3],[gx1,gy1-6,3],[gx1,gy1-6,gh-5],[gx1,gy0+8,gh-5]], 'url(#cs-glassW)', 'class="gw" opacity=".9"');
+    for (const yy of [gy0 + 30, gy0 + 56]) { const a = P(gx1, yy, 3), b = P(gx1, yy, gh - 5); html += `<line x1="${a[0]}" y1="${a[1]}" x2="${b[0]}" y2="${b[1]}" stroke="#20242b" stroke-width="2"/>`; }
+    // wood cladding block by the door
+    html += face([[164,gy1,0],[198,gy1,0],[198,gy1,gh],[164,gy1,gh]], 'url(#cs-wood)');
+    for (let k = 1; k < 9; k++) { const xx = 164 + k * 3.8, a = P(xx, gy1, 1), b = P(xx, gy1, gh - 1); html += `<line x1="${a[0]}" y1="${a[1]}" x2="${b[0]}" y2="${b[1]}" stroke="#5a3a22" stroke-opacity=".45" stroke-width="1"/>`; }
+    html += face([[176,gy1,0],[190,gy1,0],[190,gy1,32],[176,gy1,32]], '#1c1f24');                                  // door
+    // ground floor roof / slab (thin, white, with a soft edge highlight)
+    html += box(54, -106, gh, 154, 102, 4, '#eef1f4', '#d6dbe1', '#bcc3cb');
+    // upper floor: white box, cantilevered over the front-left, x 50..170, y -96..-4, h 40
+    const ux0 = 46, ux1 = 168, uy0 = -96, uy1 = 2, uz = gh + 4, uh = 40;
+    html += `<polygon points="${pt([[ux0,uy1,uz],[ux1,uy1,uz],[ux1,uy1+6,uz-8],[ux0,uy1+6,uz-8]])}" fill="#000" opacity=".18" filter="url(#cs-soft)"/>`;
+    html += face([[ux0,uy1,uz],[ux1,uy1,uz],[ux1,uy1,uz+uh],[ux0,uy1,uz+uh]], 'url(#cs-white)');
+    html += face([[ux1,uy0,uz],[ux1,uy1,uz],[ux1,uy1,uz+uh],[ux1,uy0,uz+uh]], 'url(#cs-whiteR)');
+    html += face([[ux0+10,uy1,uz+8],[ux0+76,uy1,uz+8],[ux0+76,uy1,uz+uh-8],[ux0+10,uy1,uz+uh-8]], 'url(#cs-glassW)', 'class="gw"');          // ribbon window
+    html += face([[ux0+12,uy1,uz+uh-14],[ux0+40,uy1,uz+uh-8],[ux0+28,uy1,uz+uh-8],[ux0+12,uy1,uz+uh-20]], '#fff', 'opacity=".12"');
+    html += face([[ux0+86,uy1,uz+6],[ux0+112,uy1,uz+6],[ux0+112,uy1,uz+uh-6],[ux0+86,uy1,uz+uh-6]], 'url(#cs-wood)');
+    html += face([[ux1,uy0+14,uz+8],[ux1,uy0+60,uz+8],[ux1,uy0+60,uz+uh-8],[ux1,uy0+14,uz+uh-8]], 'url(#cs-glassN)');        // side window (cool)
+    // roof terrace on the ground-floor slab, right part: glass railing
+    html += face([[ux1+2,-104,uz],[ux1+2,-6,uz],[ux1+2,-6,uz+12],[ux1+2,-104,uz+12]], '#bfe1ff', 'opacity=".14"');
+    html += face([[ux1+2,-6,uz],[206,-6,uz],[206,-6,uz+12],[ux1+2,-6,uz+12]], '#bfe1ff', 'opacity=".18"');
+    html += `<polyline points="${pt([[ux1+2,-104,uz+12],[ux1+2,-6,uz+12],[206,-6,uz+12]])}" fill="none" stroke="#dfeaf5" stroke-opacity=".7" stroke-width="1.2"/>`;
+    // upper roof: thin overhanging slab
+    html += box(ux0 - 4, uy0 - 4, uz + uh, ux1 - ux0 + 8, uy1 - uy0 + 8, 4, '#f6f8fa', '#dde2e7', '#c3cad2');
+    html += `<polyline points="${pt([[ux0-4,uy1+4,uz+uh+4],[ux1+4,uy1+4,uz+uh+4],[ux1+4,uy0-4,uz+uh+4]])}" fill="none" stroke="#fff" stroke-opacity=".8" stroke-width="1"/>`;
+    // soft LED line under the upper floor
+    html += `<polyline points="${pt([[ux0+2,uy1,uz-1],[ux1-2,uy1,uz-1]])}" stroke="#ffd59a" stroke-width="2" filter="url(#cs-glow)"/>`;
+    // a few shrubs and a small tree for scale
+    const shrub = (x, y, r = 9) => { const c = P(x, y, r * 0.6); return `<ellipse cx="${c[0]}" cy="${c[1] + r * 0.9}" rx="${r * 1.3}" ry="${r * 0.45}" fill="#000" opacity=".35" filter="url(#cs-soft)"/><circle cx="${c[0]}" cy="${c[1]}" r="${r}" fill="url(#cs-leaf)"/>`; };
+    html += shrub(56, 4, 8) + shrub(70, 8, 6) + shrub(206, 4, 7);
+    // inverter (white wall box) and battery (glossy cabinet) in front
+    html += shadow(-24, 38, 46, 22) + box(-24, 38, 4, 46, 20, 54, '#f4f6f8', 'url(#cs-silver)', 'url(#cs-silverD)');
+    html += `<polygon points="${pt([[-14,58,38],[12,58,38],[12,58,50],[-14,58,50]])}" fill="#0f2a22" stroke="#3ee39b" stroke-width="1"/>`;
+    html += `<circle cx="${P(16,58,24)[0]}" cy="${P(16,58,24)[1]}" r="2.5" fill="#3ee39b" filter="url(#cs-glow)"/>`;
+    html += shadow(-136, 100, 62, 44) + box(-136, 100, 0, 62, 44, 60, '#e9edf2', 'url(#cs-silver)', 'url(#cs-silverD)');
+    for (let k = 0; k < 5; k++) { const z0 = 8 + k * 10.5, z1 = z0 + 7.5; html += `<polygon class="bs" id="b_seg${k}" points="${pt([[-129,144,z0],[-81,144,z0],[-81,144,z1],[-129,144,z1]])}"/>`; }
+    // grid: concrete pole at the front right, wires leaving to the right
+    const g = P(340, 20);
+    html += `<line x1="${g[0]}" y1="${g[1]}" x2="${g[0]}" y2="${g[1] - 150}" stroke="#a9b2bd" stroke-width="5" stroke-linecap="round"/>
+    <line x1="${g[0] - 30}" y1="${g[1] - 136}" x2="${g[0] + 30}" y2="${g[1] - 136}" stroke="#a9b2bd" stroke-width="3"/>
+    <line x1="${g[0] - 22}" y1="${g[1] - 118}" x2="${g[0] + 22}" y2="${g[1] - 118}" stroke="#a9b2bd" stroke-width="3"/>
+    <g fill="#cde3ff" filter="url(#cs-glow)"><circle cx="${g[0]-30}" cy="${g[1]-140}" r="2.6"/><circle cx="${g[0]+30}" cy="${g[1]-140}" r="2.6"/><circle cx="${g[0]-22}" cy="${g[1]-122}" r="2.6"/><circle cx="${g[0]+22}" cy="${g[1]-122}" r="2.6"/></g>
+    <path d="M${g[0]+30} ${g[1]-140} Q${g[0]+90} ${g[1]-118} ${g[0]+150} ${g[1]-150} M${g[0]+22} ${g[1]-122} Q${g[0]+86} ${g[1]-98} ${g[0]+150} ${g[1]-128}" stroke="#6f7c8c" stroke-width="1.3" fill="none"/>`;
+    // labels
+    const lab = (x, y, cls, name, vid, sid, small, anchor = 'middle') => `<text class="sv ${cls}" x="${x.toFixed(1)}" y="${y.toFixed(1)}" text-anchor="${anchor}">${name} <tspan id="${vid}">–</tspan></text><text class="ss" x="${x.toFixed(1)}" y="${(y + 22).toFixed(1)}" text-anchor="${anchor}" id="${sid}">${small}</text>`;
+    const lp = P(-160, -170, 46); html += lab(lp[0] + 8, lp[1], 'pv', tr('solar'), 'v_pv', 'v_pvs', tr('fSolar'), 'start');
+    const hp = P(150, -150, 120); html += lab(hp[0] + 40, hp[1], 'ho', tr('fHouseT'), 'v_load', 'v_loads', tr('fNow'), 'start');
+    const bp = P(-105, 144); html += lab(bp[0] - 10, bp[1] + 34, 'bt', tr('battery'), 'v_bat', 'v_batl', tr('fBattery'));
+    html += lab(g[0] + 22, g[1] - 4, 'gr', tr('grid'), 'v_grid', 'v_gridl', tr('fGrid'), 'start');
+    const ip = P(0, 48, 64); html += `<text class="ss" x="${ip[0].toFixed(1)}" y="${(ip[1] - 10).toFixed(1)}" text-anchor="middle">${tr('fInverter')}</text>`;
+    
+    return `<svg class="fsvg sc" id="fsc" viewBox="150 0 820 500" role="img" aria-label="${tr('flow')}">${html}</svg>`;
   }
   _spark(id) {
     const pts = this.series(id, (st, a) => parseFloat(a && a.current_temperature));
@@ -1084,9 +1272,18 @@ class CasaPanel extends HTMLElement {
     go('l_load', v.load > 30, false);
     go('l_grid', Math.abs(v.grid) > 30, v.grid < 0);          // import: grid -> hub; export: reverse
     go('l_bat', Math.abs(v.bat) > 30, v.bat < 0);            // charging: hub -> battery; discharging: reverse
+    // speed with power (faster dots for more kW), and the scene: panels lit, windows lit, battery bars
+    const spd = (id, w) => { const p = this.$('#' + id); if (p) p.style.animationDuration = `${Math.max(0.3, 1.6 - Math.log10(Math.max(30, Math.abs(w || 0))) / 3).toFixed(2)}s`; };
+    spd('l_pv', v.pv); spd('l_load', v.load); spd('l_grid', v.grid); spd('l_bat', v.bat);
+    this.$('#pnl')?.classList.toggle('on', v.pv > 30); this.$('#sun')?.classList.toggle('on', v.pv > 30);
+    this.$('#wins')?.classList.toggle('on', v.load > 250);
+    this.$('#fsc')?.classList.toggle('dim', !(v.load > 250));
+    { const tk = (this._cfg.today || {}).pv_today, pt = tk ? this.kwh(tk) : NaN; this.set('v_pvs', isNum(pt) ? tr('fToday', fmt(pt, pt >= 100 ? 0 : 1)) : tr('fSolar')); }
+    this.set('v_loads', tr('fNow'));
+    for (let k = 0; k < 5; k++) { const sg = this.$('#b_seg' + k); if (sg) { const on = isNum(v.soc) && v.soc > k * 20 + 2; sg.classList.toggle('on', on && v.soc > 20); sg.classList.toggle('low', on && v.soc <= 20); } }
     this.set('v_pv', fmtW(v.pv)); this.set('v_load', fmtW(v.load));
     this.set('v_grid', isNum(v.grid) ? fmtW(Math.abs(v.grid)) : '–'); this.set('v_gridl', v.grid > 30 ? tr('import') : v.grid < -30 ? tr('export') : tr('fGrid'));
-    this.set('v_bat', isNum(v.soc) ? `${fmt(v.soc)} %` : '–'); this.set('v_batl', v.bat > 30 ? `+${fmtW(v.bat)}` : v.bat < -30 ? `−${fmtW(-v.bat)}` : tr('idleBat'));
+    this.set('v_bat', isNum(v.soc) ? `${fmt(v.soc)} %` : '–'); this.set('v_batl', v.bat > 30 ? tr('charging', fmtW(v.bat)) : v.bat < -30 ? tr('discharging', fmtW(-v.bat)) : tr('idleBat'));
     const self = isNum(v.load) && v.load > 0 && isNum(v.grid) ? Math.max(0, Math.min(100, 100 * (1 - Math.max(0, v.grid) / v.load))) : NaN;
     this.set('f_state', isNum(self) ? tr('selfNow', fmt(self)) : '');
     this.set('f_leg', [
@@ -1172,6 +1369,8 @@ class CasaPanel extends HTMLElement {
     if (this._eqOpen != null) this._eqOpts();
     this.set('r_sum', (h.equipment || []).length ? tr('running', running, (h.equipment || []).length) : '');
     this._bill(); this._devices(); this._lights(); this._acs(); this._car(); this._carControls(); this._alerts(v, pt); this._programs(); this._mnav();
+    if (this._wxEl) this._wxEl.hass = this._hass;
+    this._balance();
   }
   /* the strip under the photo: only what needs attention, empty (hidden) when all is well */
   _alerts(v, pt) {
@@ -1257,6 +1456,99 @@ class CasaPanel extends HTMLElement {
         <div class="kv"><span>${tr('lastBill')}</span><b>${esc(x.last ?? '–')}</b><span>${tr('due')}</span><b>${esc(x.due ?? '–')}</b><span>${tr('unpaid')}</span><b>${esc(x.open ?? '–')}</b></div></div>`;
     }).join('')}</div>`);
   }
+  /* monthly balance: month totals of the daily import/export/production/use counters from HA's long-term
+     statistics (no extra sensors), priced with the import and export prices set in Configure. Reloaded hourly. */
+  async _balLoad() {
+    const t = this._cfg.today || {};
+    if (!t.import_today || !t.export_today) { this._bal = { err: tr('balNeed'), at: Date.now() }; return; }
+    const now = new Date(), start = new Date(now.getFullYear(), now.getMonth() - 11, 1);
+    const keys = { pv: t.pv_today, load: t.load_today, imp: t.import_today, exp: t.export_today };
+    try {
+      const r = await this._hass.callWS({ type: 'recorder/statistics_during_period', start_time: start.toISOString(), end_time: now.toISOString(),
+        statistic_ids: Object.values(keys).filter(Boolean), period: 'month', types: ['change'] });
+      const months = {};
+      for (const [k, id] of Object.entries(keys)) {
+        if (!id) continue;
+        for (const x of (r && r[id]) || []) {
+          const d = new Date(typeof x.start === 'number' ? x.start : Date.parse(x.start)), m = d.getFullYear() * 12 + d.getMonth();
+          const o = (months[m] = months[m] || { d: new Date(d.getFullYear(), d.getMonth(), 1) });
+          if (isNum(+x.change)) o[k] = (o[k] || 0) + +x.change;
+        }
+      }
+      this._bal = { rows: Object.values(months).filter((o) => isNum(o.imp) || isNum(o.exp)).sort((a, b) => b.d - a.d), at: Date.now() };
+    } catch (e) { this._bal = { err: tr('balErr', esc(e && e.message ? e.message : String(e))), at: Date.now() }; }
+  }
+  _balance() {
+    const box = this.$('#balc'), P0 = this._cfg.prices || {}; if (!box || !(P0.imp > 0)) return;
+    if ((!this._bal || Date.now() - this._bal.at > 36e5) && !this._balBusy) {
+      this._balBusy = true; this._balLoad().finally(() => { this._balBusy = false; this._balance(); this._mnav(); });
+    }
+    if (!this._bal || this._balDrawn === this._bal) return;
+    this._balDrawn = this._bal;
+    if (this._bal.err) { box.innerHTML = `<p class="empty">${this._bal.err}</p>`; return; }
+    const pi = +P0.imp || 0, pe = +P0.exp || 0;
+    const rows = this._balRows = this._bal.rows.map((o) => {
+      const imp = o.imp || 0, exp = o.exp || 0;
+      const cons = isNum(o.load) ? o.load : isNum(o.pv) ? Math.max(0, o.pv + imp - exp) : null;
+      const cost = imp * pi - exp * pe, save = isNum(cons) ? cons * pi - cost : null;
+      return { ...o, imp, exp, cons, cost, save, self: cons > 0 ? Math.max(0, Math.min(100, (1 - imp / cons) * 100)) : null };
+    });
+    if (!rows.length) { box.innerHTML = `<p class="empty">${tr('balNoStats')}</p>`; return; }
+    const sum = (k) => rows.reduce((a, r) => a + (isNum(r[k]) ? r[k] : 0), 0), has = (k) => rows.some((r) => isNum(r[k]));
+    const cur = rows[0], kwh = (v) => (isNum(v) ? fmt(v) : '–'), lei = (v) => (isNum(v) ? fmt(v) : '–');
+    const mon = (d) => d.toLocaleDateString(LOC(), { month: 'short', year: 'numeric' });
+    box.innerHTML = `<div class="bsum"><div><div class="big num">${lei(cur.save)} lei</div><span>${tr('balNow')} (${esc(mon(cur.d))})</span></div>
+        <span>${tr('balNet')} <b class="num">${lei(cur.cost)} lei</b></span>${isNum(cur.self) ? `<span>${tr('balAuto')} <b class="num">${fmt(cur.self)} %</b></span>` : ''}</div>
+      <div class="btw"><table class="btb"><thead><tr><th>${tr('balMonth')}</th>${has('pv') ? `<th class="nx">${tr('balProd')}</th>` : ''}<th class="nx">${tr('balCons')}</th><th>${tr('balImp')}</th><th>${tr('balExp')}</th><th>${tr('balCost')}</th><th>${tr('balSave')}</th></tr></thead>
+      <tbody>${rows.map((r, i) => `<tr class="${i ? '' : 'cur'}"><td>${esc(mon(r.d))}</td>${has('pv') ? `<td class="nx">${kwh(r.pv)}</td>` : ''}<td class="nx">${kwh(r.cons)}</td><td>${kwh(r.imp)}</td><td>${kwh(r.exp)}</td><td>${lei(r.cost)}</td><td class="sv">${lei(r.save)}</td></tr>`).join('')}</tbody>
+      <tfoot><tr><td>${tr('balTotal')}</td>${has('pv') ? `<td class="nx">${kwh(sum('pv'))}</td>` : ''}<td class="nx">${kwh(sum('cons'))}</td><td>${kwh(sum('imp'))}</td><td>${kwh(sum('exp'))}</td><td>${lei(sum('cost'))}</td><td class="sv">${lei(sum('save'))}</td></tr></tfoot></table></div>
+      <p class="bnote">kWh · lei. ${tr('balNote', fmt(pi, 2), fmt(pe, 2))}</p>`;
+  }
+  /* weather pop-up: Clock Weather Card (HACS) opened from the weather in the top corner. The card is loaded from
+     its dashboard resource (or HACS' usual path) if no dashboard has loaded it yet; without it, a hint and the
+     standard weather dialog. */
+  async _wxLoad() {
+    const T = 'clock-weather-card';
+    if (customElements.get(T)) return true;
+    if (!this._wxImport) {
+      this._wxImport = (async () => {
+        let url = '/hacsfiles/clock-weather-card/clock-weather-card.js';
+        try { const r = await this._hass.callWS({ type: 'lovelace/resources' }); const f = (r || []).find((x) => /clock-weather-card/.test(x.url || '')); if (f) url = f.url; } catch (e) { /* not admin / YAML mode */ }
+        if (!customElements.get(T)) { try { await import(url); } catch (e) { /* not installed */ } }
+      })();
+    }
+    await this._wxImport;
+    try { await Promise.race([customElements.whenDefined(T), new Promise((_, no) => setTimeout(no, 6000))]); return true; } catch (e) { this._wxImport = null; return false; }
+  }
+  async _wxOpen() {
+    const c = this._cfg, m = this.$('#wxm'), box = this.$('#wxc'); if (!m || !box || !c.weather) return;
+    box.innerHTML = `<p class="empty">${tr('loading')}</p>`; m.hidden = false; this._wxEl = null; this.$('#wxx')?.focus();
+    if (!(await this._wxLoad())) {
+      box.innerHTML = `<p class="empty">${tr('wxMissing')}</p><button class="wxd" data-id="${esc(c.weather)}">${tr('wxDetails')}</button>`;
+      return;
+    }
+    const conf = { type: 'custom:clock-weather-card', entity: c.weather, locale: L === 'ro' ? 'ro' : 'en-GB',
+      time_zone: (this._hass.config && this._hass.config.time_zone) || undefined, weather_icon_type: 'fill',
+      sections: {
+        header: { rows: [
+          { font_size: '4rem', alignment: 'center', segments: [{ type: 'time', time_pattern: 'HH:mm' }] },
+          { alignment: 'center', segments: [{ type: 'date', date_pattern: 'EEEE, d MMMM' }] },
+          { segments: [{ type: 'icon', icon: 'mdi:thermometer' }, { type: 'weather', attribute: 'temperature' }, { type: 'spacer' },
+            { type: 'icon', icon: 'mdi:water-percent' }, { type: 'weather', attribute: 'humidity' }, { type: 'spacer' },
+            { type: 'icon', icon: 'mdi:weather-windy' }, { type: 'weather', attribute: 'wind_speed' }] }] },
+        forecast_strip: { count: 12 },
+        forecast_list: { count: 5 } } };
+    if (!conf.time_zone) delete conf.time_zone;
+    try {
+      const el = document.createElement('clock-weather-card'); el.setConfig(conf); el.hass = this._hass;
+      box.innerHTML = ''; box.appendChild(el); this._wxEl = el;
+    } catch (err) { box.innerHTML = `<p class="empty">${esc(err && err.message ? err.message : String(err))}</p>`; }
+    this.$('#wxx')?.focus();
+  }
+  _wxClose() { const m = this.$('#wxm'); if (m) m.hidden = true; this._wxEl = null; const b = this.$('#wxc'); if (b) b.innerHTML = ''; }
+  _langHtml() {
+    return `<div class="lang" role="group" aria-label="Limba / Language">${['ro', 'en'].map((x) => `<button data-lang="${x}" class="${L === x ? 'on' : ''}" aria-pressed="${L === x}">${x.toUpperCase()}</button>`).join('')}</div>`;
+  }
   /* phone: one tile per card with its key value and a colour for its state; tapping opens the card as a sheet */
   _mtile(k) {
     const c = this._cfg, h = c.heating || {}, v = this.live(), txt = (id) => (this.$('#' + id)?.textContent || '').trim();
@@ -1286,7 +1578,9 @@ class CasaPanel extends HTMLElement {
       }
       case 'car': { const x = this.carInfo(); return x ? [isNum(x.soc) ? `${fmt(x.soc)} %` : '–', txt('car_sum'), isNum(x.soc) && x.soc < 30 ? 'bad' : 'good'] : ['–', '', '']; }
       case 'dev': { const d = c.devices || [], down = d.filter((x) => !this.ok(x.entity)).length; return [down ? tr('down', down) : `${d.length}/${d.length}`, txt('d_sum'), down ? 'bad' : '']; }
-      case 'gr': return ['24 h', tr('tChartsSub'), ''];
+      case 'bal': { const r = this._balRows && this._balRows[0];
+        return r ? [`${fmt(r.save)} lei`, tr('tBalSub', fmt(r.cost)), r.save > 0 ? 'good' : ''] : ['–', '', '']; }
+      case 'gr': return [this._gDay === 'y' ? tr('gYest') : tr('gToday'), tr('tChartsSub'), ''];
       default: return ['–', '', ''];
     }
   }

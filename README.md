@@ -1,6 +1,6 @@
 # Casa – dashboard pentru Home Assistant
 
-Un panou de casă pentru Home Assistant, gândit pentru PC și pentru telefon: energie solară și baterie în timp real, facturi Hidroelectrica, termostate, camera tehnică (pompă de căldură, centrală, puffer, ACM), lumini, aer condiționat, mașină și grafice pe 24 de ore. Totul se configurează din interfață, fără YAML.
+Un panou de casă pentru Home Assistant, gândit pentru PC și pentru telefon: energie solară și baterie în timp real, facturi Hidroelectrica, termostate, camera tehnică (pompă de căldură, centrală, puffer, ACM), lumini, aer condiționat, mașină, grafice zilnice și bilanț lunar în lei. Totul se configurează din interfață, fără YAML.
 
 *English summary at the end.*
 
@@ -12,6 +12,8 @@ Un panou de casă pentru Home Assistant, gândit pentru PC și pentru telefon: e
 
 ![Grafice](docs/charts.png)
 
+![Bilanț lunar](docs/balance.png)
+
 ## Ce arată
 
 - **Energie acum**: fluxul solar → casă / baterie / rețea, MPPT-uri, tensiunea rețelei, cât mai ține bateria, energia de azi și prognoza.
@@ -20,7 +22,9 @@ Un panou de casă pentru Home Assistant, gândit pentru PC și pentru telefon: e
 - **Camera tehnică**: puffer și ACM ca rezervoare, modul de încălzire, echipamentele (pornit / oprit, de cât timp, cât au mers azi).
 - **Programe fixe** ținute pe un Shelly (componente virtuale), cu editor de ore.
 - **Lumini exterior**, **aer condiționat** (orice entitate `climate`), **mașina** (prin OverDrive) și **dispozitive urmărite**.
-- **Grafice pe 24 h**: energie (consum, rețea, solar, baterie), baterie, tensiune rețea, puffer și ACM cu intervalele în care au mers echipamentele, câte un grafic pe termostat.
+- **Grafice pe zi** (de la 00:00, cu butoane **Azi / Ieri**): energie (consum, rețea, solar, baterie), baterie, tensiune rețea, puffer și ACM cu intervalele în care au mers echipamentele și termostatele, câte un grafic pe termostat.
+- **Bilanț lunar** pe ultimele 12 luni: produs, consum, import, export, cost net și economie în lei, din prețurile de import și export introduse în Configurează → Energia de azi (din statisticile HA, fără senzori în plus).
+- **Vremea** sus, cu prognoza pe 3 zile; la atingere se deschide [Clock Weather Card](https://github.com/pkissling/clock-weather-card), dacă e instalat din HACS (altfel fereastra standard).
 - **Alerte** sus: dispozitive căzute, facturi aproape de scadență, baterie sau puffer sub prag.
 - **Telefon**: plăci pe două coloane, colorate după stare; atingerea deschide cardul într-o fereastră de jos.
 - Română și engleză, cu comutator în pagină.
@@ -53,6 +57,8 @@ Lumini exterior     Foișor = switch.foisor
 Aer condiționat     Aer parter = climate.ac_parter
 ```
 
+Pentru **bilanțul lunar** completează la pasul *Energia de azi* senzorii de import / export zilnic și prețurile (lei/kWh, cu TVA). Senzorii trebuie să aibă `state_class: total_increasing` (cei de la Deye au).
+
 Panoul apare în bara laterală (**Casa**). Poți folosi și cardul `custom:casa-card` într-un dashboard Lovelace, de exemplu ca pagină implicită.
 
 ### Integrări pe care le folosește (opțional)
@@ -75,4 +81,4 @@ MIT – vezi [LICENSE](LICENSE).
 
 ## English
 
-**Casa** is a home dashboard panel for Home Assistant, built for desktop and phone: live solar, battery and grid flow, Hidroelectrica (Romania) bills, thermostats, a boiler room view (heat pump, gas boiler, buffer and hot-water tanks), outdoor lights, air conditioning, an OverDrive car card and 24-hour charts. Everything is configured from the UI (Settings → Devices & services → Add integration → Casa). Install through HACS as a custom repository (type Integration) or copy `custom_components/casa_dashboard` to your config folder. Romanian and English, switchable on the page. MIT licensed.
+**Casa** is a home dashboard panel for Home Assistant, built for desktop and phone: live solar, battery and grid flow, Hidroelectrica (Romania) bills, thermostats, a boiler room view (heat pump, gas boiler, buffer and hot-water tanks), outdoor lights, air conditioning, an OverDrive car card, daily charts with Today / Yesterday, a 12-month balance in lei from your import and export prices, and a weather pop-up with Clock Weather Card (if installed). Everything is configured from the UI (Settings → Devices & services → Add integration → Casa). Install through HACS as a custom repository (type Integration) or copy `custom_components/casa_dashboard` to your config folder. Romanian and English, switchable on the page. MIT licensed.

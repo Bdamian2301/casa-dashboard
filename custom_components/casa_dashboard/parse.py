@@ -167,7 +167,7 @@ def thermostat_text(states: list[tuple[str, str]]) -> str:
 
 def panel_config(s: dict, image_default: str) -> dict:
     """The config the panel receives, from the entry's settings."""
-    from .const import CONF_ALERT_PUFFER, CONF_ALERT_SOC, CONF_BATTERY_KWH, CONF_BATTERY_RESERVE, NUM_DEFAULTS, TODAY_KEYS  # noqa: PLC0415
+    from .const import CONF_ALERT_PUFFER, CONF_ALERT_SOC, CONF_BATTERY_KWH, CONF_BATTERY_RESERVE, CONF_PRICE_EXPORT, CONF_PRICE_IMPORT, NUM_DEFAULTS, TODAY_KEYS  # noqa: PLC0415
     from .const import CONF_ACM, CONF_CAR, CONF_AC, CONF_CAR_NAME, CONF_LIGHTS, CONF_PROGRAMS  # noqa: PLC0415
     from .const import CONF_BATTERY_INVERT, CONF_DEMAND, CONF_DEVICES, CONF_EQUIPMENT, CONF_HIDRO, CONF_IMAGE, \
         CONF_MODE, CONF_MODE_REASON, CONF_PUFFER, CONF_THERMOSTATS, CONF_TITLE, CONF_WEATHER, ENERGY_KEYS  # noqa: PLC0415
@@ -199,4 +199,5 @@ def panel_config(s: dict, image_default: str) -> dict:
         "car": {"prefix": str(s.get(CONF_CAR)).strip(), "name": s.get(CONF_CAR_NAME) or ""} if str(s.get(CONF_CAR) or "").strip() else {},
         "today": {k: s.get(k) for k in TODAY_KEYS if s.get(k)},
         "alerts": {"soc": num(CONF_ALERT_SOC), "puffer": num(CONF_ALERT_PUFFER)},
+        "prices": {"imp": num(CONF_PRICE_IMPORT), "exp": num(CONF_PRICE_EXPORT)},
     }

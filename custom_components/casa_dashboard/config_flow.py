@@ -13,7 +13,7 @@ from homeassistant.helpers import selector
 from .const import (
     CONF_ADMIN_ONLY, CONF_AC, CONF_LIGHTS, CONF_BATTERY_INVERT, CONF_DEMAND, CONF_DEVICES, CONF_EQUIPMENT, CONF_HIDRO, CONF_IMAGE, CONF_PROGRAMS, CONF_ACM, CONF_CAR, CONF_CAR_NAME,
     CONF_MODE, CONF_MODE_REASON, CONF_PUFFER, CONF_THERMOSTATS, CONF_TITLE, CONF_WEATHER, DEFAULT_IMAGE, DOMAIN, ENERGY_KEYS,
-    CONF_ALERT_PUFFER, CONF_ALERT_SOC, CONF_BATTERY_KWH, CONF_BATTERY_RESERVE, NUM_DEFAULTS, TODAY_KEYS,
+    CONF_ALERT_PUFFER, CONF_ALERT_SOC, CONF_BATTERY_KWH, CONF_BATTERY_RESERVE, CONF_PRICE_EXPORT, CONF_PRICE_IMPORT, NUM_DEFAULTS, TODAY_KEYS,
 )
 from .parse import detect_car, detect_deye, detect_today, thermostat_text
 
@@ -36,7 +36,8 @@ STEPS: dict[str, list[tuple[str, Any, bool]]] = {
                 (CONF_ADMIN_ONLY, BOOL, True)],
     "energy": [(k, _ent("sensor"), False) for k in ENERGY_KEYS] + [
         (CONF_BATTERY_INVERT, BOOL, True), (CONF_BATTERY_KWH, _num(500, 0.1, "kWh"), True), (CONF_BATTERY_RESERVE, _num(100, 1, "%"), True)],
-    "today": [(k, _ent("sensor"), False) for k in TODAY_KEYS],
+    "today": [(k, _ent("sensor"), False) for k in TODAY_KEYS] + [
+        (CONF_PRICE_IMPORT, _num(10, 0.0001, "lei/kWh"), True), (CONF_PRICE_EXPORT, _num(10, 0.0001, "lei/kWh"), True)],
     "heating": [(CONF_THERMOSTATS, MULTI, False), (CONF_MODE, _ent(["input_select", "select", "sensor"]), False),
                 (CONF_MODE_REASON, _ent(["input_text", "sensor"]), False),
                 (CONF_PUFFER, _ent("sensor"), False), (CONF_ACM, _ent("sensor"), False), (CONF_DEMAND, _ent("sensor"), False), (CONF_EQUIPMENT, MULTI, False),
