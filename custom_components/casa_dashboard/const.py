@@ -1,7 +1,7 @@
 """Constants for Casa."""
 
 DOMAIN = "casa_dashboard"
-VERSION = "0.24.0"
+VERSION = "0.24.1"
 PANEL_URL = "casa"
 STATIC_URL = "/casa_static"
 PANEL_ELEMENT = "casa-panel"

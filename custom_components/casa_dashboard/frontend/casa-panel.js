@@ -4,7 +4,7 @@
  * Author: Bogdan Damian. SPDX-License-Identifier: MIT
  */
 (() => {
-const VERSION = '0.24.0';
+const VERSION = '0.24.1';
 const CAR_CONTROLS = false;
 
 const CSS = `
@@ -854,7 +854,8 @@ class CasaPanel extends HTMLElement {
     this.shadowRoot.addEventListener('change', (ev) => this._progChange(ev.target));
     this.shadowRoot.addEventListener('keydown', (ev) => { if ((ev.key === 'Enter' || ev.key === ' ') && ev.target.id === 'pg_list') { ev.preventDefault(); this._progOpen = true; this._progBuilt = false; this._programs(); } });
     this._progBuilt = false;
-    this._built = true; this._time(); this._update();
+    this._built = true; this._grDrawn = false; this._time(); this._update();
+    this._charts();                                                    // after a language switch the charts are drawn again from the loaded history
   }
   _chip(icon, label, id, style, ent) {
     return `<button class="chip" style="${style}" ${ent ? `data-id="${esc(ent)}"` : ''}><i>${ic(icon)}</i><div><span id="${id}_l">${label}</span><b class="num" id="${id}">–</b></div></button>`;

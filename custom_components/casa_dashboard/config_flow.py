@@ -37,7 +37,7 @@ STEPS: dict[str, list[tuple[str, Any, bool]]] = {
     "energy": [(k, _ent("sensor"), False) for k in ENERGY_KEYS] + [
         (CONF_BATTERY_INVERT, BOOL, True), (CONF_BATTERY_KWH, _num(500, 0.1, "kWh"), True), (CONF_BATTERY_RESERVE, _num(100, 1, "%"), True)],
     "today": [(k, _ent("sensor"), False) for k in TODAY_KEYS] + [
-        (CONF_PRICE_IMPORT, _num(10, 0.0001, "lei/kWh"), True), (CONF_PRICE_EXPORT, _num(10, 0.0001, "lei/kWh"), True)],
+        (CONF_PRICE_IMPORT, _num(10, 0.001, "lei/kWh"), True), (CONF_PRICE_EXPORT, _num(10, 0.001, "lei/kWh"), True)],
     "heating": [(CONF_THERMOSTATS, MULTI, False), (CONF_MODE, _ent(["input_select", "select", "sensor"]), False),
                 (CONF_MODE_REASON, _ent(["input_text", "sensor"]), False),
                 (CONF_PUFFER, _ent("sensor"), False), (CONF_ACM, _ent("sensor"), False), (CONF_DEMAND, _ent("sensor"), False), (CONF_EQUIPMENT, MULTI, False),
