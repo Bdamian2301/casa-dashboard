@@ -4,7 +4,7 @@
  * Author: Bogdan Damian. SPDX-License-Identifier: MIT
  */
 (() => {
-const VERSION = '0.24.1';
+const VERSION = '0.24.2';
 const CAR_CONTROLS = false;
 
 const CSS = `
@@ -735,7 +735,11 @@ class CasaPanel extends HTMLElement {
   more(id) { if (id) this.dispatchEvent(new CustomEvent('hass-more-info', { detail: { entityId: id }, bubbles: true, composed: true })); }
   $(s) { return this.shadowRoot.querySelector(s); }
   $$(s) { return [...this.shadowRoot.querySelectorAll(s)]; }
-  set(id, html) { const el = this.$('#' + id); if (el && el.innerHTML !== html) el.innerHTML = html; }
+  /* write html only when it changed. Compared with the last html written, not with innerHTML: the browser re-serialises
+     innerHTML (svg tags, attribute quoting), so that comparison was never equal and the element was rebuilt on every
+     state change, which swallowed taps on phones (the button under the finger was replaced before the click). */
+  put(el, html) { if (el && el._h !== html) { el._h = html; el.innerHTML = html; } }
+  set(id, html) { this.put(this.$('#' + id), html); }
 
   /* ---------- skeleton (built once; _update only changes values, so the page never jumps) */
   _render() {
@@ -989,7 +993,7 @@ class CasaPanel extends HTMLElement {
     box.hidden = !this._modeOpen || !list.length;
     btn?.setAttribute('aria-expanded', String(!box.hidden));
     const html = list.map((x) => `<button data-opt="${esc(x)}" class="${s.state === x ? 'on' : ''}">${esc(x)}</button>`).join('') + (this._modeErr ? `<p>${esc(this._modeErr)}</p>` : '');
-    if (box.innerHTML !== html) box.innerHTML = html;
+    this.put(box, html);
     clearTimeout(this._modeT);
     if (this._modeOpen) this._modeT = setTimeout(() => { this._modeOpen = false; this._opts(); }, 15000);
   }
@@ -1002,7 +1006,7 @@ class CasaPanel extends HTMLElement {
       box.hidden = !open;
       this.$(`#eq${k} [data-eqmode]`)?.setAttribute('aria-expanded', String(open));
       const html = open ? list.map((o) => `<button data-k="${k}" data-eqopt="${esc(o)}" class="${s.state === o ? 'on' : ''}">${esc(o)}</button>`).join('') + (this._eqErr ? `<p>${esc(this._eqErr)}</p>` : '') : '';
-      if (box.innerHTML !== html) box.innerHTML = html;
+      this.put(box, html);
     });
     clearTimeout(this._eqT);
     if (this._eqOpen != null) this._eqT = setTimeout(() => { this._eqOpen = null; this._eqOpts(); }, 15000);
@@ -1122,7 +1126,7 @@ class CasaPanel extends HTMLElement {
         <button class="act off" data-car="tail" data-v="close">${tr('tDoClose')}</button>
         ${canStop ? `<button class="act z ${moving ? '' : 'dim'}" data-car="tail" data-v="stop">${tr('tStop')}</button>` : ''}</div></div>`;
     }
-    const left = lock + clim + tail, html = (left ? `<div class="ccl">${left}</div>` : '') + seats; if (box.innerHTML !== html) box.innerHTML = html;
+    const left = lock + clim + tail, html = (left ? `<div class="ccl">${left}</div>` : '') + seats; this.put(box, html);
   }
   async _carCmd(kind, v) {
     const c = this.carCtl(), msg = (t, err) => { const m = this.$('#car_msg'); if (m) { m.textContent = t || ''; m.classList.toggle('err', !!err); } };
@@ -1311,7 +1315,7 @@ class CasaPanel extends HTMLElement {
         <div class="t num">${isNum(cur) ? fmt(cur, 1) : '–'}<sup>°C</sup></div>
         <div class="scale">${isNum(tgt) ? `<span class="tgt" style="left:${pos(tgt)}"></span>` : ''}${isNum(cur) ? `<span class="cur" style="left:${pos(cur)}"></span>` : ''}</div>
         <div class="s num">${isNum(tgt) ? tr('setTo', fmt(tgt, 1)) : tr('noTarget')}${isNum(parseFloat(a.current_humidity)) ? ` · ${tr('humidity', fmt(parseFloat(a.current_humidity)))}` : ''}</div>`;
-      if (el.innerHTML !== html) el.innerHTML = html;
+      this.put(el, html);
     });
     this._heating = heating;
     this.set('h_sum', (c.thermostats || []).length ? tr('zonesHeating', heating) : '');
@@ -1365,7 +1369,7 @@ class CasaPanel extends HTMLElement {
       const html = `<i>${ic(x.icon || 'dev')}</i><span>${esc(x.name || s?.attributes?.friendly_name || x.entity)}${sub ? `<small>${sub}</small>` : ''}${why ? `<small class="why">${esc(why)}</small>` : ''}</span>`
         + (md ? `<button class="eqm ${/^auto/i.test(md.state) ? '' : 'man'}" data-eqmode="${k}" aria-expanded="${this._eqOpen === k}">${esc(md.state)}</button>` : '')
         + `<em>${na ? tr('unavailable') : on ? tr('on') : tr('off')}</em>`;
-      if (el.innerHTML !== html) el.innerHTML = html;
+      this.put(el, html);
     });
     if (this._eqOpen != null) this._eqOpts();
     this.set('r_sum', (h.equipment || []).length ? tr('running', running, (h.equipment || []).length) : '');
